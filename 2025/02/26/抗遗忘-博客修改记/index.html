@@ -158,7 +158,7 @@
       <div class="post-attach">
         <span class="post-pubtime">
           <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
-          2025-02-27 12:01:55
+          2025-02-27 14:31:52
         </span>
         
       </div>
@@ -174,24 +174,40 @@
 
 <h1 id="02-添加字数统计"><a href="#02-添加字数统计" class="headerlink" title="02 添加字数统计"></a>02 添加字数统计</h1><p>参考教程：</p>
 <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_44082148/article/details/105701427">Hexo添加字数统计和阅读统计</a></p>
-<p>安装RSS：</p>
-<p><a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo-generator-feed">hexojs&#x2F;hexo-generator-feed: Feed generator for Hexo.</a></p>
 <p>注意：</p>
 <ul>
 <li>主题配置文件和oranges主题配置文件都放在了后者里，在footer部分。</li>
 <li><code>symbols_count_time</code> 不可以在多个地方重复，否则会报错，如下，删除_config.yml文件里重复的就好了。</li>
 </ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">FATAL</span><br><span class="line">YAMLException: duplicated mapping key (126:1)</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">FATAL</span><br><span class="line">YAMLException: duplicated mapping key (126:1)</span><br></pre></td></tr></table></figure>
 
 <p>最终主题配置文件添加的内容：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">symbols_count_time:</span><br><span class="line">  symbols: false                # 文章字数统计</span><br><span class="line">  time: true                   # 文章阅读时长</span><br><span class="line">  total_symbols: true          # 站点总字数统计</span><br><span class="line">  total_time: true             # 站点总阅读时长</span><br><span class="line">  exclude_codeblock: false     # 排除代码字数统计</span><br><span class="line">  separated_meta: true     # 是否另起一行（true的话不和发表时间等同一行）</span><br><span class="line">  item_text_post: true     # 首页文章统计数量前是否显示文字描述（本文字数、阅读时长）</span><br><span class="line">  item_text_total: false   # 页面底部统计数量前是否显示文字描述（站点总字数、站点阅读时长）</span><br><span class="line">  awl: 4                   # Average Word Length</span><br><span class="line">  wpm: 275                 # Words Per Minute（每分钟阅读词数）</span><br><span class="line">  suffix: mins.</span><br><span class="line"></span><br><span class="line">post_wordcount: 		# 字数统计</span><br><span class="line">  item_text: true		# 是否显示文字</span><br><span class="line">  wordcount: true		# 显示字数</span><br><span class="line">  min2read: true		# 显示阅读时间</span><br><span class="line">  totalcount: true		# 显示总数</span><br><span class="line">  separated_meta: true	# 是否分开</span><br><span class="line"></span><br><span class="line">feed:</span><br><span class="line">  enable: true</span><br><span class="line">  type:</span><br><span class="line">    - atom</span><br><span class="line">    - rss2</span><br><span class="line">  path: atom.xml</span><br><span class="line">  limit: 20</span><br><span class="line">  hub:</span><br><span class="line">  content:</span><br><span class="line">  content_limit: 140</span><br><span class="line">  content_limit_delim: &#x27; &#x27;</span><br><span class="line">  order_by: -date</span><br><span class="line">  icon: icon.png</span><br><span class="line">  autodiscovery: true</span><br><span class="line">  template:</span><br><span class="line">    - ./source/custom.xml  # 使用自定义模板生成 atom feed</span><br><span class="line">  exclude:</span><br><span class="line">    - &#x27;custom.xml&#x27;  # 不将 custom.xml 复制到 public/ 文件夹中</span><br></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">symbols_count_time:</span><br><span class="line">  symbols: false                # 文章字数统计</span><br><span class="line">  time: true                   # 文章阅读时长</span><br><span class="line">  total_symbols: true          # 站点总字数统计</span><br><span class="line">  total_time: true             # 站点总阅读时长</span><br><span class="line">  exclude_codeblock: false     # 排除代码字数统计</span><br><span class="line">  separated_meta: true     # 是否另起一行（true的话不和发表时间等同一行）</span><br><span class="line">  item_text_post: true     # 首页文章统计数量前是否显示文字描述（本文字数、阅读时长）</span><br><span class="line">  item_text_total: false   # 页面底部统计数量前是否显示文字描述（站点总字数、站点阅读时长）</span><br><span class="line">  awl: 4                   # Average Word Length</span><br><span class="line">  wpm: 275                 # Words Per Minute（每分钟阅读词数）</span><br><span class="line">  suffix: mins.</span><br><span class="line"></span><br><span class="line">post_wordcount: 		# 字数统计</span><br><span class="line">  item_text: true		# 是否显示文字</span><br><span class="line">  wordcount: true		# 显示字数</span><br><span class="line">  min2read: true		# 显示阅读时间</span><br><span class="line">  totalcount: true		# 显示总数</span><br><span class="line">  separated_meta: true	# 是否分开</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>似乎不大行，改日再看吧。</p>
+<p>修改文件themes&#x2F;oranges&#x2F;layout&#x2F;_partial&#x2F;footer.ejs，添加以下内容：</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 添加网站统计信息 --&gt;</span><br><span class="line">&lt;div class=&quot;footer-stats&quot;&gt;</span><br><span class="line">  &lt;p&gt;文章数目: &lt;%= site.posts.length %&gt;&lt;/p&gt;</span><br><span class="line">  &lt;p&gt;运行时间: &lt;%= (new Date() - new Date(&#x27;2022-12-26&#x27;)) / (1000 * 60 * 60 * 24) %&gt; 天&lt;/p&gt;</span><br><span class="line">  &lt;p&gt;本站总字数: &lt;%= site.posts.reduce(function(sum, post)&#123; return sum + post.content.split(&#x27; &#x27;).length; &#125;, 0) %&gt; 字&lt;/p&gt;</span><br><span class="line">  &lt;p&gt;本站访客数: &lt;%= site.visitors || &#x27;未知&#x27; %&gt;&lt;/p&gt;</span><br><span class="line">  &lt;p&gt;本站总浏览量: &lt;%= site.pageviews || &#x27;未知&#x27; %&gt;&lt;/p&gt;</span><br><span class="line">  &lt;p&gt;最后更新时间: &lt;%= site.updatedAt || &#x27;未知&#x27; %&gt;&lt;/p&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+
+<p>安装 <code>hexo-generator-visitor</code> 插件：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-generator-visitor --save</span><br></pre></td></tr></table></figure>
+
+<p>在 <code>_config.yml</code> 配置文件中设置插件，插件会将访客数据记录在 <code>public/visitor.json</code> 文件中：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">visitor:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">json</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="03添加RSS"><a href="#03添加RSS" class="headerlink" title="03添加RSS"></a>03添加RSS</h1><p>安装RSS：</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo-generator-feed">hexojs&#x2F;hexo-generator-feed: Feed generator for Hexo.</a></p>
+<p>把主题配置文件中部分取消注释：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">name: rss</span><br><span class="line">icon: rss</span><br><span class="line">path: /atom.xml</span><br></pre></td></tr></table></figure>
+
+<p>主题配置文件添加的内容：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">feed:</span><br><span class="line">  enable: true</span><br><span class="line">  type:</span><br><span class="line">    - atom</span><br><span class="line">    - rss2</span><br><span class="line">  path: atom.xml</span><br><span class="line">  limit: 20</span><br><span class="line">  hub:</span><br><span class="line">  content:</span><br><span class="line">  content_limit: 140</span><br><span class="line">  content_limit_delim: &#x27; &#x27;</span><br><span class="line">  order_by: -date</span><br><span class="line">  icon: icon.png</span><br><span class="line">  autodiscovery: true</span><br><span class="line">  template:</span><br><span class="line">    - ./source/custom.xml  # 使用自定义模板生成 atom feed</span><br><span class="line">  exclude:</span><br><span class="line">    - &#x27;custom.xml&#x27;  # 不将 custom.xml 复制到 public/ 文件夹中</span><br></pre></td></tr></table></figure>
 
 <p>在<code>./source/</code> 目录下创建一个 <code>custom.xml</code> 文件，内容：</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;UTF-8&quot;</span> ?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">rss</span> <span class="attr">version</span>=<span class="string">&quot;2.0&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">channel</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>&lt;%= config.title %&gt;<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">link</span>&gt;</span>&lt;%= config.url %&gt;<span class="tag">&lt;/<span class="name">link</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">description</span>&gt;</span>&lt;%= config.description %&gt;<span class="tag">&lt;/<span class="name">description</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">language</span>&gt;</span>&lt;%= config.language %&gt;<span class="tag">&lt;/<span class="name">language</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- 循环输出文章 --&gt;</span></span><br><span class="line">    &lt;% posts.each(function(post)&#123; %&gt;</span><br><span class="line">      <span class="tag">&lt;<span class="name">item</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">title</span>&gt;</span>&lt;%= post.title %&gt;<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">link</span>&gt;</span>&lt;%= post.permalink %&gt;<span class="tag">&lt;/<span class="name">link</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">guid</span>&gt;</span>&lt;%= post.permalink %&gt;<span class="tag">&lt;/<span class="name">guid</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">pubDate</span>&gt;</span>&lt;%= post.date.toUTCString() %&gt;<span class="tag">&lt;/<span class="name">pubDate</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">description</span>&gt;</span>&lt;%= post.excerpt %&gt;<span class="tag">&lt;/<span class="name">description</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">content:encoded</span>&gt;</span>&lt;![CDATA[&lt;%= post.content %&gt;]]&gt;<span class="tag">&lt;/<span class="name">content:encoded</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">&lt;!-- 你可以在此处添加更多自定义字段 --&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 总字数 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">total-words</span>&gt;</span>&lt;%= post.content.split(&#x27; &#x27;).length %&gt;<span class="tag">&lt;/<span class="name">total-words</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">&lt;!-- 起始时间 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">start-time</span>&gt;</span>&lt;%= post.date.toISOString() %&gt;<span class="tag">&lt;/<span class="name">start-time</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">item</span>&gt;</span></span><br><span class="line">    &lt;% &#125;); %&gt;</span><br><span class="line">  <span class="tag">&lt;/<span class="name">channel</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">rss</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
-<p>但是似乎不大行，改日再看吧。</p>
-<p>把主题配置文件中部分取消注释：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">name: rss</span><br><span class="line">icon: rss</span><br><span class="line">path: /atom.xml</span><br></pre></td></tr></table></figure>
+
       </div>
       
         <div class="prev-or-next">
@@ -206,7 +222,7 @@
           <div class="post-attach">
             <span class="post-pubtime">
               <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
-              2025-02-27 12:01:55
+              2025-02-27 14:31:52
             </span>
             
           </div>
@@ -224,7 +240,7 @@
     <div class="title">目录</div>
     <div class="catalog-content">
       
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#01%E7%BD%AE%E9%A1%B6%E6%96%87%E7%AB%A0"><span class="toc-text">01置顶文章</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#02-%E6%B7%BB%E5%8A%A0%E5%AD%97%E6%95%B0%E7%BB%9F%E8%AE%A1"><span class="toc-text">02 添加字数统计</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#01%E7%BD%AE%E9%A1%B6%E6%96%87%E7%AB%A0"><span class="toc-text">01置顶文章</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#02-%E6%B7%BB%E5%8A%A0%E5%AD%97%E6%95%B0%E7%BB%9F%E8%AE%A1"><span class="toc-text">02 添加字数统计</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#03%E6%B7%BB%E5%8A%A0RSS"><span class="toc-text">03添加RSS</span></a></li></ol>
       
     </div>
   </div>
@@ -309,6 +325,17 @@
         
     </div>
   
+
+  <!-- 添加网站统计信息 -->
+  <div class="footer-stats">
+    <p>文章数目: 29</p>
+    <p>运行时间: 2249.272339525463 天</p>
+    <p>本站总字数: 2464 字</p>
+    <p>本站访客数: 未知</p>
+    <p>本站总浏览量: 未知</p>
+    <p>最后更新时间: 未知</p>
+  </div>
+
   
 </div>
 
