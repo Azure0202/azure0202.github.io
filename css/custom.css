@@ -1,0 +1,24 @@
+/* 底部容器样式 */
+.footer-stats {
+  display: flex;  /* 使用 Flexbox 布局 */
+  justify-content: center;  /* 使内容居中 */
+  flex-wrap: wrap;  /* 当空间不足时换行 */
+  gap: 20px;  /* 设置项之间的间距 */
+  padding: 20px 0;
+  font-size: 14px;  /* 设置字体大小 */
+  background-color: #f1f1f1;  /* 底部背景颜色 */
+  color: #333;  /* 字体颜色 */
+}
+
+/* 每个统计项的样式 */
+.footer-item {
+  margin: 5px 10px;  /* 每个项之间的间隔 */
+  display: inline-block;  /* 确保它们是行内元素 */
+  text-align: center;  /* 确保文字居中 */
+}
+
+/* 使每个项目有个小的悬停效果 */
+.footer-item:hover {
+  color: #007bff; /* 悬停时改变字体颜色 */
+  cursor: pointer; /* 悬停时显示指针 */
+}
