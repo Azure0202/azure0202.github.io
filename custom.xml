@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0">
+  <channel>
+    <title><%= config.title %></title>
+    <link><%= config.url %></link>
+    <description><%= config.description %></description>
+    <language><%= config.language %></language>
+
+    <!-- 循环输出文章 -->
+    <% posts.each(function(post){ %>
+      <item>
+        <title><%= post.title %></title>
+        <link><%= post.permalink %></link>
+        <guid><%= post.permalink %></guid>
+        <pubDate><%= post.date.toUTCString() %></pubDate>
+        <description><%= post.excerpt %></description>
+        <content:encoded><![CDATA[<%= post.content %>]]></content:encoded>
+
+        <!-- 你可以在此处添加更多自定义字段 -->
+        <!-- 总字数 -->
+        <total-words><%= post.content.split(' ').length %></total-words>
+
+        <!-- 起始时间 -->
+        <start-time><%= post.date.toISOString() %></start-time>
+      </item>
+    <% }); %>
+  </channel>
+</rss>
