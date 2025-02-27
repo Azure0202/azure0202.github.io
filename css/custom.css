@@ -3,9 +3,9 @@
   display: flex;  /* 使用 Flexbox 布局 */
   justify-content: center;  /* 使内容居中 */
   flex-wrap: wrap;  /* 当空间不足时换行 */
-  gap: 10px;  /* 设置项之间的间距 */
-  padding: 10px 0;
-  font-size: 1.2rem;  /* 根据网页字体统一设定 */
+  gap: 4px;  /* 设置项之间的间距 */
+  padding: 2px 0;
+  font-size: 0.6rem;  /* 根据网页字体统一设定 */
   background-color: var(--bg-footer);  /* 底部背景颜色来自全局变量 */
   color: var(--color-text-footer);  /* 字体颜色来自全局变量 */
   font-family: Consolas, "Liberation Mono", Menlo, Monaco, "Source Han Sans CN", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif; /* 统一字体 */
@@ -16,8 +16,8 @@
   margin: 2px 4px;  /* 每个项之间的间隔 */
   display: inline-block;  /* 确保它们是行内元素 */
   text-align: center;  /* 确保文字居中 */
-  font-size: 1.2rem;  /* 统一字体大小，保持一致 */
-  line-height: 0.8;  /* 增加行高，保持舒适阅读 */
+  font-size: 0.6rem;  /* 统一字体大小，保持一致 */
+  line-height: 0.1;  /* 增加行高，保持舒适阅读 */
 }
 
 /* 使每个项目有个小的悬停效果 */
