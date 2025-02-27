@@ -1,0 +1,460 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>azure&#39;s blog</title>
+  
+  <subtitle>azure&#39;s blog</subtitle>
+  <link href="https://azure0202.github.io/atom.xml" rel="self"/>
+  
+  <link href="https://azure0202.github.io/"/>
+  <updated>2025-02-27T03:09:19.205Z</updated>
+  <id>https://azure0202.github.io/</id>
+  
+  <author>
+    <name>Azure</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>抗遗忘 | 博客修改记</title>
+    <link href="https://azure0202.github.io/2025/02/26/%E6%8A%97%E9%81%97%E5%BF%98-%E5%8D%9A%E5%AE%A2%E4%BF%AE%E6%94%B9%E8%AE%B0/"/>
+    <id>https://azure0202.github.io/2025/02/26/%E6%8A%97%E9%81%97%E5%BF%98-%E5%8D%9A%E5%AE%A2%E4%BF%AE%E6%94%B9%E8%AE%B0/</id>
+    <published>2025-02-26T10:09:11.000Z</published>
+    <updated>2025-02-27T03:09:19.205Z</updated>
+    
+    <content type="html"><![CDATA[<p>记录博客修改内容，也是记录回去的路。</p><h1 id="01置顶文章"><a href="#01置顶文章" class="headerlink" title="01置顶文章"></a>01置顶文章</h1><p>参考教程：</p><p><a href="https://blog.csdn.net/nineya_com/article/details/103394315?ops_request_misc=%7B%22request_id%22:%2284ab3d7c38ca320e71f0cd661ee99f81%22,%22scm%22:%2220140713.130102334..%22%7D&request_id=84ab3d7c38ca320e71f0cd661ee99f81&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~all~sobaiduend~default-1-103394315-null-null.142%5Ev101%5Epc_search_result_base1&utm_term=hexo%E7%BD%AE%E9%A1%B6%E6%96%87%E7%AB%A0&spm=1018.2226.3001.4187">hexo博客文章置顶功能实现的两种方法</a></p><p>原码：</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&#x27;use strict&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> pagination = <span class="built_in">require</span>(<span class="string">&#x27;hexo-pagination&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = <span class="keyword">function</span>(<span class="params">locals</span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> config = <span class="variable language_">this</span>.<span class="property">config</span>;</span><br><span class="line">  <span class="keyword">const</span> posts = locals.<span class="property">posts</span>.<span class="title function_">sort</span>(config.<span class="property">index_generator</span>.<span class="property">order_by</span>);</span><br><span class="line"></span><br><span class="line">  posts.<span class="property">data</span>.<span class="title function_">sort</span>(<span class="function">(<span class="params">a, b</span>) =&gt;</span> (b.<span class="property">sticky</span> || <span class="number">0</span>) - (a.<span class="property">sticky</span> || <span class="number">0</span>));</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> paginationDir = config.<span class="property">pagination_dir</span> || <span class="string">&#x27;page&#x27;</span>;</span><br><span class="line">  <span class="keyword">const</span> path = config.<span class="property">index_generator</span>.<span class="property">path</span> || <span class="string">&#x27;&#x27;</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="title function_">pagination</span>(path, posts, &#123;</span><br><span class="line">    <span class="attr">perPage</span>: config.<span class="property">index_generator</span>.<span class="property">per_page</span>,</span><br><span class="line">    <span class="attr">layout</span>: [<span class="string">&#x27;index&#x27;</span>, <span class="string">&#x27;archive&#x27;</span>],</span><br><span class="line">    <span class="attr">format</span>: paginationDir + <span class="string">&#x27;/%d/&#x27;</span>,</span><br><span class="line">    <span class="attr">data</span>: &#123;</span><br><span class="line">      <span class="attr">__index</span>: <span class="literal">true</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure><p>修改后：</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&#x27;use strict&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> pagination = <span class="built_in">require</span>(<span class="string">&#x27;hexo-pagination&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = <span class="keyword">function</span>(<span class="params">locals</span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> config = <span class="variable language_">this</span>.<span class="property">config</span>;</span><br><span class="line">  <span class="keyword">const</span> posts = locals.<span class="property">posts</span>.<span class="title function_">sort</span>(config.<span class="property">index_generator</span>.<span class="property">order_by</span>);</span><br><span class="line"></span><br><span class="line">    posts.<span class="property">data</span> = posts.<span class="property">data</span>.<span class="title function_">sort</span>(<span class="keyword">function</span>(<span class="params">a, b</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span>(a.<span class="property">top</span> &amp;&amp; b.<span class="property">top</span>) &#123; <span class="comment">// 两篇文章都有top，top大的在前</span></span><br><span class="line">        <span class="keyword">if</span>(a.<span class="property">top</span> == b.<span class="property">top</span>)</span><br><span class="line"><span class="keyword">return</span> b.<span class="property">date</span> - a.<span class="property">date</span>; <span class="comment">// 若top值一样，最新的文章在前面</span></span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line"><span class="keyword">return</span> b.<span class="property">top</span> - a.<span class="property">top</span>; <span class="comment">// top大的在前面</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(a.<span class="property">top</span> &amp;&amp; !b.<span class="property">top</span>) &#123; <span class="comment">// 以下是只有一篇文章top有定义，那么将有top的排在前面</span></span><br><span class="line">        <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(!a.<span class="property">top</span> &amp;&amp; b.<span class="property">top</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">return</span> b.<span class="property">date</span> - a.<span class="property">date</span>; <span class="comment">//都没有top标签，最新的文章在前面</span></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> paginationDir = config.<span class="property">pagination_dir</span> || <span class="string">&#x27;page&#x27;</span>;</span><br><span class="line">  <span class="keyword">const</span> path = config.<span class="property">index_generator</span>.<span class="property">path</span> || <span class="string">&#x27;&#x27;</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="title function_">pagination</span>(path, posts, &#123;</span><br><span class="line">    <span class="attr">perPage</span>: config.<span class="property">index_generator</span>.<span class="property">per_page</span>,</span><br><span class="line">    <span class="attr">layout</span>: [<span class="string">&#x27;index&#x27;</span>, <span class="string">&#x27;archive&#x27;</span>],</span><br><span class="line">    <span class="attr">format</span>: paginationDir + <span class="string">&#x27;/%d/&#x27;</span>,</span><br><span class="line">    <span class="attr">data</span>: &#123;</span><br><span class="line">      <span class="attr">__index</span>: <span class="literal">true</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure><h1 id="02-添加字数统计"><a href="#02-添加字数统计" class="headerlink" title="02 添加字数统计"></a>02 添加字数统计</h1><p>参考教程：</p><p><a href="https://blog.csdn.net/qq_44082148/article/details/105701427">Hexo添加字数统计和阅读统计</a></p><p>注意：</p><p>主题配置文件和oranges主题配置文件都放在了二者里，前者在末尾，后者在footer部分。</p><p>安装RSS：</p><p><a href="https://github.com/hexojs/hexo-generator-feed">hexojs&#x2F;hexo-generator-feed: Feed generator for Hexo.</a></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;记录博客修改内容，也是记录回去的路。&lt;/p&gt;
+&lt;h1 id=&quot;01置顶文章&quot;&gt;&lt;a href=&quot;#01置顶文章&quot; class=&quot;headerlink&quot; title=&quot;01置顶文章&quot;&gt;&lt;/a&gt;01置顶文章&lt;/h1&gt;&lt;p&gt;参考教程：&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https:</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>日记薄 | 我的阳历生日</title>
+    <link href="https://azure0202.github.io/2025/02/26/%E6%97%A5%E8%AE%B0%E8%96%84-%E6%88%91%E7%9A%84%E9%98%B3%E5%8E%86%E7%94%9F%E6%97%A5/"/>
+    <id>https://azure0202.github.io/2025/02/26/%E6%97%A5%E8%AE%B0%E8%96%84-%E6%88%91%E7%9A%84%E9%98%B3%E5%8E%86%E7%94%9F%E6%97%A5/</id>
+    <published>2025-02-26T09:32:26.000Z</published>
+    <updated>2025-02-26T15:18:57.870Z</updated>
+    
+    <content type="html"><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">  <script id="hbeData" type="hbeData" data-hmacdigest="3e2a30bbc9243a3c8191ed28a130e87291f3ed2fd33849601d7fe813b4948453">c2316e3820e909a8c84f1302d162c0c3ffcca2ef8760066f5a72291d19794d0c885b039aa089e9b9d311956138d01362dd00b8e1e75d55f3382521e786bee0a2419bee6b2959acaceedaacd5b7e282b46fe1598945b6350c19ac1381498919b25b45ba6c6054cec251b5e65290f1c9d2398725772a8db34a88df228060b39c9d531f6340f2f1fb0a0ff1f5a305bbaa4eb75726617d6b74eb87a960ac2d98a784de50245c2519b32a4561b0405620ae3e0f97b2a3ac78e5e9f1db751443475ce6f2c0550f68645c75e1a3f87ed9569b524ad6789b7c0d71dfd756a8fb359186e90a97c3dd0b4087e1c896d65bf7ec786ecc05a703a526f050c5616ab56e45fe93bc5876eadcc9b6cf8e77fb768f32aa78e4c2edf4db5d96e260993992b353a0129aed0b272d36132a6b79bb17d1ca528f8041419c542555b3953371081279ae5b177f6ecc55a0882bde7925991b73b784f1c93e19dfbe86585bd3717bef20182c275ac35ecac8b812e858c4a3825310e0ff718d9b3442fb48b8feda3d112adf55ebc01193c8955fdc12b7e230a784f1fea5e92c6affdec2e87034b926ece696881d49bdf0acfc52ea2b4f3f281715d6eb7a5f95d8aec8601be573a54b66de57780e70c3e816668ea4c8d38f9f556dc8f6e40aee450bd0d9e825d247e5fcd911ef23dea11b50e218b1ed582487175f1c3a232348fca79ecacf092842b9807e65327298497e806a000088c9dd59d630ec3e74594138025031b5e66c428905a84ecdfcca7dae6a98a9e373281403ae9347fc5900495ad483ab23d10c29ada674da9ace87eb950972fe41dfaae98b52502ac4cd8670f9c2b36c11d005dda100dcb340dfb10a6677f8cc3e6c22605bfe5afb79a7260554c2dd9f6f480cf93a82a5e4d60cc4c46ef198d8a2ca3e8271519bf25a08c8cbca9de260a72ba74f0beea3b3e2ddc480bde516a0d28a44d4b842fce5abfba050de3381c3104bb969ca224e82e299cf660eef8fc4cfe4e3e3341121cb3c9b993d1a72a4cf0fa77f062b7765683bf353b7173bf362dcf345338b58db84b4747b631d35a32acf93809e5dd6e27dd64775363d1b2314696e987278730cf5b594643f06025e185300ebf168bcd37b57368131808e6317a312ce47b49121239e03dbff11e80c48d1160d10f47c9b16591085c822423c4446d5b8d5b7d982dade3ccc64f1a360e6c9a4f07d4142390d973b3f849bd93a58b8a76125c7ed6c192ac1d3c928061b7a73f1cdb0686781aba2277248fe0e7052902827247e2d88121072267134b797161a96bb27cfe8723968e2ce0be759402300f5e512adda1b6525be781aed2bb74f535fc5e5f0be9c8356fb91b1363dc24c5d9d3da52dc1c860b0a5285e1ae7403406a27211e9a0564b2a46954fc2a6f0db0bc96b3b50b1f902802675ea68331584fcd639e01dd5a861d67c402386f816fc8a95c2c2b4ec7ed74e148e399171a702db59dbf16e5c3e53b870e302d577a9d4490d6f45f92e7725cefa1b595b2ddc43638305f8a9ae5e03f196991143bd840a384b5490c3133155cfeac4f64b1d9bb99c00ca1402c16626882410dbfb7e355c5f1dd1b9f954016c9d6077c4c2c5bffd0234fb0f54aa335cc27ff5575ba0eb874f1cc80fcc2745828d</script>  <div class="hbe hbe-content">    <div class="hbe hbe-input hbe-input-default">      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">        <span class="hbe hbe-input-label-content hbe-input-label-content-default">Hey, password is required here.</span>      </label>    </div>  </div></div><script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
+    
+    
+    <summary type="html">Here&#39;s something encrypted, password is required to continue reading.</summary>
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>常更新 | 文字愈心</title>
+    <link href="https://azure0202.github.io/2025/02/25/%E5%B8%B8%E6%9B%B4%E6%96%B0-%E6%96%87%E5%AD%97%E6%84%88%E5%BF%83/"/>
+    <id>https://azure0202.github.io/2025/02/25/%E5%B8%B8%E6%9B%B4%E6%96%B0-%E6%96%87%E5%AD%97%E6%84%88%E5%BF%83/</id>
+    <published>2025-02-25T15:35:33.000Z</published>
+    <updated>2025-02-26T15:18:33.146Z</updated>
+    
+    <content type="html"><![CDATA[<p style="margin-bottom: 50px;">我常常想文字是有力量的，也有读一些句子的习惯，想把一些记录下来，很多都来源于网络，很多找不到出处，或者出处不一定对，只做简单记录。</p><p>2025年2月26日</p><p> “在人生的道路上，每一个人都是孤独的旅客。与其舒舒服服，懵懵懂懂活一辈子，倒不如品尝一点不平常的滋味，似苦而实甜。”——季羡林《当下即是生活》</p><p style="margin-bottom: 50px;">这本书是我几年前开始看的，这是书的引言部分的第一句话，大概是后人整理的，我时常感觉自己忙忙碌碌的，感觉别人好像没那么忙，我有时候也想我能不能也悠悠闲闲的，可终究是像一个种花的人，春分时想着要种牡丹，清明时想着种绣球，到了夏至又要开始种茉莉，于是这个时节的话花谢了，新的时令的花又来了。</p><hr><p>一些待写的：</p><p>“每个人都争取一个完满的人生。然而，自古及今，海内海外，一个百分之百完满的人生是没有的。所以我说，不完满才是人生。经常地不肯妥协，不满于现状，舍了这个，下一个可能更差，过多的欲求往往使你失去眼前的幸福，有时应学会迁就。”——季羡林《当下即是生活》</p><p>“他永远不回头看，他只向前看，而且在前面他的又看到闪烁的希望，灿烂的花。”——季羡林《当下即是生活》</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p style=&quot;margin-bottom: 50px;&quot;&gt;我常常想文字是有力量的，也有读一些句子的习惯，想把一些记录下来，很多都来源于网络，很多找不到出处，或者出处不一定对，只做简单记录。&lt;/p&gt;
+
+&lt;p&gt;2025年2月26日&lt;/p&gt;
+&lt;p&gt; “在人生的道路上，每一个人都是</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>寻常事 | 读《平如美棠》</title>
+    <link href="https://azure0202.github.io/2025/02/24/%E5%AF%BB%E5%B8%B8%E4%BA%8B-%E8%AF%BB%E3%80%8A%E5%B9%B3%E5%A6%82%E7%BE%8E%E6%A3%A0%E3%80%8B/"/>
+    <id>https://azure0202.github.io/2025/02/24/%E5%AF%BB%E5%B8%B8%E4%BA%8B-%E8%AF%BB%E3%80%8A%E5%B9%B3%E5%A6%82%E7%BE%8E%E6%A3%A0%E3%80%8B/</id>
+    <published>2025-02-24T12:00:53.000Z</published>
+    <updated>2025-02-26T15:13:09.964Z</updated>
+    
+    <content type="html"><![CDATA[<p>2025年2月24日 一读 1-60页</p><p>昨天跟夏闹了些矛盾。</p><p>下午借了饶平如先生的《平如美棠》来读，读之前看过一些简介，说是饶先生的回忆录，我便开始从第一页开始读，略了标题，只觉得倒像是采访纪实，也确实是的，采访者是柴静女士。</p><p>饶平如少时与美棠有几面之缘，后参军，期间二人结为夫妻。他参军后战争打响后起初是不怕的，依父母言回乡见过美棠后只觉得“自己的命从此轻慢不得，因为命里多了一个人”。这是一种怎样的感受呢，我觉得我懂得，实际上我也觉得我不懂得。</p><p>1958年饶平如被劳动教养，有人告诉美棠让与绕平如划清界限，她不依的她是知道饶平如是怎样的人。后二十多年每年只能回去与美棠相见一面，书里写“二十二年，一直如此”，我们都知道这句话的分量。</p><p>一年三百六十五日，即使是我提笔一直写，该如何写尽这其中的滋味，人生有穷，思绪无穷，我往往认为随着年纪渐长往往是百味杂陈而非简单的酸甜苦辣咸，上一句还在读小桥流水人家的童年平凡事，下一句就是站在历史的尽头里回望那个时候的自己不曾看到的时间的伏笔，</p><p>我不能清晰地想象得到往后的我们，</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;2025年2月24日 一读 1-60页&lt;/p&gt;
+&lt;p&gt;昨天跟夏闹了些矛盾。&lt;/p&gt;
+&lt;p&gt;下午借了饶平如先生的《平如美棠》来读，读之前看过一些简介，说是饶先生的回忆录，我便开始从第一页开始读，略了标题，只觉得倒像是采访纪实，也确实是的，采访者是柴静女士。&lt;/p&gt;
+&lt;p&gt;饶平</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>我们的 | 你姐姐买的</title>
+    <link href="https://azure0202.github.io/2025/01/19/%E6%88%91%E4%BB%AC%E7%9A%84-%E4%BD%A0%E5%A7%90%E5%A7%90%E4%B9%B0%E7%9A%84/"/>
+    <id>https://azure0202.github.io/2025/01/19/%E6%88%91%E4%BB%AC%E7%9A%84-%E4%BD%A0%E5%A7%90%E5%A7%90%E4%B9%B0%E7%9A%84/</id>
+    <published>2025-01-19T15:01:37.000Z</published>
+    <updated>2025-02-21T08:02:45.891Z</updated>
+    
+    <content type="html"><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">  <script id="hbeData" type="hbeData" data-hmacdigest="4c45bd8581c5564905419daffb94b38f534dfaa71b72ef45fb1a9c2ec4dd5f03">68dea119326f9e5ea608ca61e4db890c752fc3ca2f710970453d1a4479257c5280c6746868fb10ccc759118f1399b9271402b310c3fe0192956c0fbf47cd4c17e51c5f6bd3dcbd7ad3e5df3efd153c98051431e69eae819fa25e48f7e355fa97e0975e30b2cc21d3fa9a8af8cee903fc4e44fda89a31287564aba135a29f292cfd577225579e4112c6c2696595ceb9b3e5376483c5d3e37fccf60335ff59e2f1f76036d7bb2ca7abc2cd4039aac9e10febed356ead501ffeb249bae0f4505e76f4a2d77dbada316b8aed50dc83d1c7e5460adf13d382cfd9d225c752e16b083c23025ebd755e37b6a0e0dd3b657f44b43ff5fd2c83f328e5668d26bf994e2bb2441680dbd1ea3a344429a5811398f4b59b9b8043ad6f2519676e3192dfa9cc48526995aac8d633d27d028c5dba2a21b6e98aee46325e8d9329103d2a76aae7c236c6a929e7a28856ba36f7faea89fb389128bd55ee4f44a515f56931a3852bf881faa0ffc290cef4c25c1c611bda1483fa903aee2474a9f89e29e0a666e6d9935a1c9fd49c48ffe5ade5de7e6670ee36607238c17380422d8ee13c1698d2de2fc6fca8b239711769c8a522282a3a7639ea94381a2abf0e5bec318c8403311e7b9b0f044bcf9dad5c33e4b109cd5e2606a9dc844f879a771cf5ff8f45b29d97e77c6edb29cc1ab756f7575b8916af8734e11504dd8fbc528e8e73b37224bfc201ddc4546995f740c6f1ccd638cb2b93570c5d7f10a22ee8213d60ffe9c3c637bd54aad96ccff428904f3e49025625ee981d9037e972bb02ed6183152c9e7503a0411e752da02569e351ac6c35bd960e8aa769ab89134e65fdd2abb0c1c89d1c205195b0101ae658d91c2b7ee0bf07a7a4480519131d35449ff75ed806807c074e4f9089624a27feb5461f0d8fb32270b05f0ff4b1fd7205425bab44525047127350daba29cf7e8278585648d68f89798c4859898706bd00bd2951f69cf9dddcce47ee2f149fba4de16d9199d7eeb64799150c9b7664800dbcef594ef25b202df557310da3aff7fe1bde4aabe8688137ac3222df84ac23443c31b665d40aaceb63fe1ab587e5b3bbdc09c6d9affd1c4e5189ce5ad91f7b02479bf9bfef3bc31e64fbdb465fa6e8570e009218619e077234ad9b18c187e8c9c1602c113c42b5f2a1481703c81ebaf7ca720a1be69c5889b0809a07fd54b49f9f67f03b72808e0f6d148d6ffe632847c7fa22694727a41168f912e1bd54de5978f3f16666d87c509a74f7d2789de59677fbf68991e6eed7b4750073a7c69765a396cef8480a1251ac3da831c671e02b26369a6005e80b9f97fd1df732b149acb560666725e565f89c06a22714af7616d5c6cd5a8c116e2099ade6bc7502e48938d514ac4978d0661478c85ec943862a599c6f8ae103c01489e32b7099febfb15ce2262038db3113d0dc6dc2ee3eb7d382e1ec70a2943c65c58518ff28f653434564e4eefc18497f9bdad0b816072af44384e44614bb2309eae0df8d1fbe27b53737562190d05e8d1141753e5fa0a35cd9592f4bf270ea6e88ea5d329b7ae6dac4cf7604764ab227f8b03d02fed75ab4d67f248c05c6649130b6805e0910da9ba1d6f109074622f174bd61220bd903022c32ed69442517aa30f45babd2af26acfc88543dfc36ce40d9b33225e2ace023011751d86d33761e479c0bacb84e50e12713cebc46e92f21a0de3ef72ba6154950613b8ad07bbe88b9b3e66ed8e6e0327190c7342a44df2d1a71aa758a6d611fba8931a6f6ced8333dc1f0c43771c13a4cd757d9526f20a6af9234392d99f7bc9dca85f43f4ed415d0f6fb27b58222f7acec5a9f3358e5e27ffc49813fde08f40b860594b1a23cd7a2758cdf550047324fef1852b4406750220e7b65676a7ef8ed9f5e40bc209407d7fb5a745b994a6ef292393b6d5774d1155716bc26fc27ffcf1cdcd6ba0c7f9cd4c80553aeb658cbe4da0d534bae5297e1ad2414c948454e6ce3139cf38e1585c7e92c5de185a567408f7ef9eedad42754e3fb705a85235e80a1fab44f2734ba528fb81ff5c36541f45eeeda478d094b5830bc0135a80d5c0c3791d4de7c52efa3079788026d3b39362041681a237b8f3717cbec2cb8d04c1cec5400ae5ed6ca89</script>  <div class="hbe hbe-content">    <div class="hbe hbe-input hbe-input-default">      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">        <span class="hbe hbe-input-label-content hbe-input-label-content-default">Hey, password is required here.</span>      </label>    </div>  </div></div><script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
+    
+    
+    <summary type="html">Here&#39;s something encrypted, password is required to continue reading.</summary>
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>小故事 | 鱼兔狐</title>
+    <link href="https://azure0202.github.io/2024/10/14/%E5%B0%8F%E6%95%85%E4%BA%8B-%E9%B1%BC%E5%85%94%E7%8B%90/"/>
+    <id>https://azure0202.github.io/2024/10/14/%E5%B0%8F%E6%95%85%E4%BA%8B-%E9%B1%BC%E5%85%94%E7%8B%90/</id>
+    <published>2024-10-14T15:17:39.000Z</published>
+    <updated>2024-10-14T16:45:52.127Z</updated>
+    
+    <content type="html"><![CDATA[<p style="margin-bottom: 50px;">“姜尚因命守时，立钩钓渭水之鱼，不用香饵之食，离水面三尺， 尚自言曰：‘负命者上钩来！’”[1]</p><p>这一天还是无鱼。</p><p>“你在做什么？”溪边来了一只兔子。</p><p>“钓鱼。”一个年过花甲的老汉正襟危坐在溪边说。</p><p>“可您没有放鱼饵。”兔子说。</p><p>“没关系。”老汉没有任何表情。</p><p>“我想请问您一件事。”兔子说。</p><p>没有人说话。</p><p>“请问您知道这世间上方的圆该去哪里找吗？”兔子问。</p><p>“去集市上找。”老汉犹豫了一会说。</p><p>“可他们说方的圆是不存在的。”兔子说。</p><p>“你已经有答案了。”老汉答。</p><p>“不是的，我只惊奇您居然认为它是存在的。”兔子说。</p><p>“我不认为它存在，也不认为它不存在，只是你来问我，我便给你指一个我的答案。”老汉说。</p><p>“谢谢您，我去集市上找。”兔子说完转身就走了。</p><p>兔子找了整整一天，一无所获。</p><p>“我找遍了集市，没有方的圆。”兔子说。</p><p>“你相信有方的圆了吗？”老汉问。</p><p>“不信。”兔子说。</p><p>“那你继续找吧，有的。”老汉说。</p><p>兔子又找了整整一天，依旧一无所获。</p><p>“我找遍了集市，没有方的圆。”兔子说。</p><p>“你相信有方的圆了吗？”老汉问。</p><p>“不信。”兔子答。</p><p>“那你继续找吧，有的。”老汉说。</p><p>这一次兔子不想放过任何一个角落，认真找，她发现集市上有很多有趣的玩意，青蛙家的小船可以顺着溪水流很远，鸽子家的木头模型可以金鸡独立，猫家的风车一定有六百个角，糖葫芦原来在夏天也卖，棉花糖真的可以飞到天上去，一向吵得不可开交的巷子口两家店家竟因为一个银币重归就好……</p><p>“我找遍了集市，没有方的圆。”兔子说。</p><p>“你相信有方的圆了吗？”老汉问。</p><p>“我也不知道我相不相信，我觉得这没关系了。”兔子说。</p><p style="margin-bottom: 50px;">“那你不必找了。”老汉招招手对她说，自己也收拾鱼竿回去了。</p><p>这一天还是无鱼。</p><p>“你在做什么？”溪边又来了一只狐狸。</p><p>“钓鱼。”老汉还是正襟危坐。</p><p>“可您的鱼钩是直的。”狐狸说。</p><p>“没关系。”老汉没有任何表情。</p><p>“我想请问您一件事。”狐狸说。</p><p>还是没有人说话。</p><p>“您觉得方的好还是圆的好？”狐狸问。</p><p>“圆的好。”老汉答。</p><p>“可是我最喜欢的人常穿带有方形的衣服。”狐狸说。</p><p>“方的好。”老汉答。</p><p>“可是我最喜欢的月亮是圆的。”狐狸说。</p><p>谁也不说话了。</p><p>“你有答案了。”老汉说。</p><p>“我没有，我想问你。”狐狸说。</p><p>“我觉得好。”老汉答。</p><p>“可我想选一个最好。”狐狸说。</p><p>“那都不好。”老汉答。</p><p>“怎么会都不好，我最喜欢的……你不懂”狐狸说。</p><p style="margin-bottom: 50px;">"我不懂。"“我也不懂。”他们说。</p><p>这一天，不知多少只鱼儿路过了老汉，有一条停下来了。</p><p>“你在做什么。”鱼问。</p><p>“钓鱼。”老汉答。</p><p>“不是的。”鱼说。</p><p>“如何不是。”老汉好奇。</p><p>“你没有带鱼饵，你的鱼钩是直的，你没有带桶。”鱼答。</p><p>“可我为什么不能是来钓鱼的。”</p><p>“你每日来此，日出时刻坐于此处，正午去集市，日落时又归去，风雨雷电均不能伤你分毫，从未有任何一只鱼归于你，虽受群鱼嘲讽却丝毫不改你心，偶有好友来与你饮几杯酒，好友却也从不劝你，有渔友经过你却会与他们攀谈一会，鱼钩从未修理，鱼竿也从未修补，你确不是来捕鱼的。”</p><p style="margin-bottom: 50px;">“我识兔狐，也物万观遍。”</p><hr><p>[1]宋《武王伐纣平话》</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p style=&quot;margin-bottom: 50px;&quot;&gt;“姜尚因命守时，立钩钓渭水之鱼，不用香饵之食，离水面三尺， 尚自言曰：‘负命者上钩来！’”[1]&lt;/p&gt;
+
+&lt;p&gt;这一天还是无鱼。&lt;/p&gt;
+&lt;p&gt;“你在做什么？”溪边来了一只兔子。&lt;/p&gt;
+&lt;p&gt;“钓鱼。”一个年过花</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>花香近 | 初夏的味道</title>
+    <link href="https://azure0202.github.io/2024/10/09/%E8%8A%B1%E9%A6%99%E8%BF%91-%E5%88%9D%E6%81%8B%E5%91%B3%E9%81%93/"/>
+    <id>https://azure0202.github.io/2024/10/09/%E8%8A%B1%E9%A6%99%E8%BF%91-%E5%88%9D%E6%81%8B%E5%91%B3%E9%81%93/</id>
+    <published>2024-10-09T08:13:07.000Z</published>
+    <updated>2024-10-10T08:50:16.936Z</updated>
+    
+    <content type="html"><![CDATA[<p>小雏菊花束不言不语，与其他的花束一同静静地置身于街市旁的木桶中，言语声、汽笛声、商铺门口的音乐声、恋人的心跳声……实在不算安静，天色已经将近傍晚了。</p><p>说话声音将近，一时间小雏菊只觉得天地一阵眩晕，半分钟后才缓过神来，原来自己已经离开了伙伴们，正被人捧在怀里，世界正在缓缓后退，世界又在缓缓前进，世界又在急促地转圈。定睛看看，少女的裙子是纯白色的，鼻尖也没有任何灰尘。小雏菊用心感受着，两人说话声音不算小，对它来说确实有些吵了，但它并不反感，他们说话的内容很有趣，让人不忍打扰。</p><p>梧桐树下的灯光是明黄色的，梧桐树下的世界也是极安静的，小雏菊激励散发着自己独有的草木香气，这是它最爱的初夏味道。世界又这样慢慢行走着，少女把它靠在自己的右肩，这个位置正好便于小雏菊观察这个世界，不知道是不是远离闹市的原因，有那么几刻钟，它几乎只能听到两人的心跳了，少女的心跳急急缓缓，少年的心跳热烈有力，声音也更为大一些。</p><p>小雏菊常贴紧少女的脸颊，它能看到她眯着眼，大约是受到了花香的影响，但它想这样的味道应当是被人们喜欢的，它是有这样的自信的。他们还带小雏菊一起逛了很多地方，瞌睡精灵悄悄钻进了路人的怀里，小雏菊挥一挥手便把它们赶跑了，它一向不喜欢这些精灵。路过爬山虎架子的时候，它跟这些好朋友问了好。</p><p>没有人关心树木什么时候互道晚安，没有人知道长椅上会不会有夏日回响，主干道上的灯光格外捧场，这些都不重要，五月的第一天要在心跳声中结束了，小雏菊游历了好久的街道和校园，如今正在在两处思绪之间，与早等在此处的新朋友们，跳出只有他们才懂的舞。</p><p>它似乎并未感知到一些记忆，冬日里的粉色玫瑰含蓄内敛，碎冰蓝花瓣有十三处，在这初夏时节，便不再去想季节另一端的事情了。值得庆幸的是，向日葵热烈地奔她而来，多头蔷薇一直念着祝词，黄玫瑰唱着只有恋人可以听到的歌，小雏菊做了一个真实的美梦。</p><p>英文牛皮纸报纸包装的向日葵和卡布奇诺花束奔我而来，向日葵与任何事都无关，雏菊一心只念初夏，初夏的味道是初恋。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;小雏菊花束不言不语，与其他的花束一同静静地置身于街市旁的木桶中，言语声、汽笛声、商铺门口的音乐声、恋人的心跳声……实在不算安静，天色已经将近傍晚了。&lt;/p&gt;
+&lt;p&gt;说话声音将近，一时间小雏菊只觉得天地一阵眩晕，半分钟后才缓过神来，原来自己已经离开了伙伴们，正被人捧在怀里，世</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>不完满 | 不辞长作岭南人——书评《长安的荔枝》</title>
+    <link href="https://azure0202.github.io/2024/09/28/%E4%B8%8D%E5%AE%8C%E6%BB%A1-%E4%B8%8D%E8%BE%9E%E9%95%BF%E4%BD%9C%E5%B2%AD%E5%8D%97%E4%BA%BA%E2%80%94%E2%80%94%E4%B9%A6%E8%AF%84%E3%80%8A%E9%95%BF%E5%AE%89%E7%9A%84%E8%8D%94%E6%9E%9D%E3%80%8B/"/>
+    <id>https://azure0202.github.io/2024/09/28/%E4%B8%8D%E5%AE%8C%E6%BB%A1-%E4%B8%8D%E8%BE%9E%E9%95%BF%E4%BD%9C%E5%B2%AD%E5%8D%97%E4%BA%BA%E2%80%94%E2%80%94%E4%B9%A6%E8%AF%84%E3%80%8A%E9%95%BF%E5%AE%89%E7%9A%84%E8%8D%94%E6%9E%9D%E3%80%8B/</id>
+    <published>2024-09-28T07:20:37.000Z</published>
+    <updated>2024-11-22T14:24:48.136Z</updated>
+    
+    <content type="html"><![CDATA[<p>罗浮山下四时春，</p><p>卢橘杨梅次第新。</p><p>日啖荔枝三百颗，</p><p>不辞长作岭南人。</p><p>（一）事已至此，今天就好好睡一觉吧。</p><p>结果诏书，李善德长舒一口气，直奔家中，妻子早已在等他，说做了他爱吃的桂花羹，他边吃说明情况，跟妻子商量了动身启程计划与事宜。“事已至此，今天就好好睡一觉吧。”，那日李善德长长的睡了一觉，梦里什么都没有。</p><p>（二）他也会想念长安的上元灯会吗？</p><p>李善德携夫人和女儿一同前往岭南，上上次去岭南是去完成那荔枝使完不成的使命，上京到岭南四千六百里，可荔枝一日色变，二日香变，三日味变，遥遥千里，极尽水陆智慧才想出的转运之法，终还是完成了，而此去，却是流放。</p><p>归义坊的住所还没住，他卖掉后换做盘缠，买了二手马车，买了京城酒，重走这条路，他已十分熟悉，先到蓝田、后至商州、襄州、鄂州、洪州、虔州、过韶州终至广州。这是六月底的一个普通清晨，延兴门早早开了城门，一家三口踏上了岭南之行。</p><p>回想在长安的种种，感慨万千，从前忙于政务，在上林署当一小小监事，奔波于宅第俸禄，原以为会这样平淡过下去，不曾想近几月内居然发生诸多事，如今去岭南了，倒觉得一身轻松。</p><p>马车驶出城门，他没有回头，一路上一家人走走停停，足足花了四个月才到，到岭南后，一家人便住在阿僮荔枝果园后，远在千里外，对京城也无甚了解了，每天早起打理果园，照料阿僮的果树。黄皮依然是每天懒洋洋的样子，果农们唱着日复一日的歌。</p><p>（三）我要嫁的是他，又不是长安。</p><p>行车在这路途中，李夫人总让李善德多歇着，李善德也笑着应，女儿一会出去逛，一会要买新奇的玩意，一会不爱玩了又睡着了，在京城时有宵禁，且李善德日日工作，说来也是好久没有这样长时间的相处了，这从长安出发有几日了，她总担心李善德会有失落。</p><p>一日晚上见李善德在客栈院子里待了很久了，等得着急便下去寻他，之间李善德站在院子中抬头看天，她应方向望去，天空繁星密布，好似近在眼前，她与李善德并排站着，约莫过了一刻钟，竟齐声说到“你受苦了”，“会后悔吗”。都笑了，“跟你在一起就很甜。”“有你在我不后悔。”</p><p>一日清晨，阿僮端了荔枝来，两人聊了一阵，阿僮望着远方李善德的身影，问：“你们从那么好的地方跑来，你难道一点都不怪那个城人？”，“他就是这样的人，我才嫁的他。年少时爬华山，脚扭了，你可知那华山奇险无比，他硬是背着我走下了山，他就是这样的人，即使危险困难，也会拼尽全力保护自己要保护的人，当日我就知道是他了。去找右相前他也向我袒露过心声，如果我不让他去，他是不会去的，可这么多年夫妻，我怎能不知他心中苦闷，这样做让他念头通达，那便去吧，他的目光不会有假，即使是离开长安。况且，我要嫁的是他，又不是长安。”</p><p>（四）你说，那城人怎么好生奇怪。</p><p>京城酒是留给阿僮的，往后苏谅也来过几次，五月初，苏谅再次到访，阿僮如今已经很熟悉这个商人了，苏谅与李善德围在果园旁的小亭子那里吃完了一整盘荔枝，阿僮见状有拿了几盘来，李善德道谢，阿僮确不理他，自顾自坐在旁边的数下，摸着黄皮的肚皮，小声地说：“你说那城人，费尽周章找到这个商人，当初也不知道怎么了，还有天天在这园子里忙活，也不说话，好生奇怪。”黄皮并不能听懂，喵了一声又跑到别处去了。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;罗浮山下四时春，&lt;/p&gt;
+&lt;p&gt;卢橘杨梅次第新。&lt;/p&gt;
+&lt;p&gt;日啖荔枝三百颗，&lt;/p&gt;
+&lt;p&gt;不辞长作岭南人。&lt;/p&gt;
+&lt;p&gt;（一）事已至此，今天就好好睡一觉吧。&lt;/p&gt;
+&lt;p&gt;结果诏书，李善德长舒一口气，直奔家中，妻子早已在等他，说做了他爱吃的桂花羹，他边吃说明情况，跟</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>到时见 | 隐藏题目-未完成</title>
+    <link href="https://azure0202.github.io/2024/04/19/%E5%88%B0%E6%97%B6%E8%A7%81-%E6%88%91%E6%B8%85%E6%A5%9A%E5%9C%B0%E8%AE%A4%E8%AF%86%E5%88%B0%E6%88%91%E5%96%9C%E6%AC%A2%E4%BB%96/"/>
+    <id>https://azure0202.github.io/2024/04/19/%E5%88%B0%E6%97%B6%E8%A7%81-%E6%88%91%E6%B8%85%E6%A5%9A%E5%9C%B0%E8%AE%A4%E8%AF%86%E5%88%B0%E6%88%91%E5%96%9C%E6%AC%A2%E4%BB%96/</id>
+    <published>2024-04-18T17:05:26.000Z</published>
+    <updated>2024-09-28T07:17:44.595Z</updated>
+    
+    <content type="html"><![CDATA[<p>我清楚地认识到我喜欢他</p><p>有一天，我在边泡脚边听歌，不明所以得哭了，我跑出去抬头看月亮，希望他也在看。</p><p>时隔多年，再次相见我依然是一幅唯诺的模样，我清楚地认识到我喜欢他。</p><p>他说：肆无忌惮地想你原来是这么开心的一件事。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;我清楚地认识到我喜欢他&lt;/p&gt;
+&lt;p&gt;有一天，我在边泡脚边听歌，不明所以得哭了，我跑出去抬头看月亮，希望他也在看。&lt;/p&gt;
+&lt;p&gt;时隔多年，再次相见我依然是一幅唯诺的模样，我清楚地认识到我喜欢他。&lt;/p&gt;
+&lt;p&gt;他说：肆无忌惮地想你原来是这么开心的一件事。&lt;/p&gt;
+</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>观人间 | 隐藏题目-未写完</title>
+    <link href="https://azure0202.github.io/2024/04/12/%E8%A7%82%E4%BA%BA%E9%97%B4-%E4%BA%BA%E7%94%9F%E6%98%AF%E4%B8%80%E5%9C%BA%E5%8F%88%E4%B8%80%E5%9C%BA%E7%9A%84%E7%9B%B8%E9%81%87%E5%8F%88%E6%8C%A5%E5%88%AB-%E6%9C%AA%E5%86%99%E5%AE%8C/"/>
+    <id>https://azure0202.github.io/2024/04/12/%E8%A7%82%E4%BA%BA%E9%97%B4-%E4%BA%BA%E7%94%9F%E6%98%AF%E4%B8%80%E5%9C%BA%E5%8F%88%E4%B8%80%E5%9C%BA%E7%9A%84%E7%9B%B8%E9%81%87%E5%8F%88%E6%8C%A5%E5%88%AB-%E6%9C%AA%E5%86%99%E5%AE%8C/</id>
+    <published>2024-04-12T14:35:18.000Z</published>
+    <updated>2024-09-28T07:18:02.384Z</updated>
+    
+    <content type="html"><![CDATA[<p>人生是一场又一场的相遇又挥别</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;人生是一场又一场的相遇又挥别&lt;/p&gt;
+</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>放个空 | 隐藏题目-未写完</title>
+    <link href="https://azure0202.github.io/2024/03/08/%E6%94%BE%E4%B8%AA%E7%A9%BA-%E6%A1%8C%E9%9D%A2%E4%B8%80%E8%A7%92--%E6%9C%AA%E5%86%99%E5%AE%8C/"/>
+    <id>https://azure0202.github.io/2024/03/08/%E6%94%BE%E4%B8%AA%E7%A9%BA-%E6%A1%8C%E9%9D%A2%E4%B8%80%E8%A7%92--%E6%9C%AA%E5%86%99%E5%AE%8C/</id>
+    <published>2024-03-07T16:26:20.000Z</published>
+    <updated>2024-09-28T07:18:20.039Z</updated>
+    
+    <content type="html"><![CDATA[<p>桌面一角</p><p>未完成</p><p>我总是喜欢整理这些小玩意儿，本科的时候专门用一个胡桃木书架放着这些，它们是我的朋友，如今我在写字，它们便陪着我，每一个都是一个可以说很久的故事。它们与货架上的从根本上不同，在我这里，它们都有灵魂，我喜爱望着它们发呆，我感谢它们这样陪着我。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;桌面一角&lt;/p&gt;
+&lt;p&gt;未完成&lt;/p&gt;
+&lt;p&gt;我总是喜欢整理这些小玩意儿，本科的时候专门用一个胡桃木书架放着这些，它们是我的朋友，如今我在写字，它们便陪着我，每一个都是一个可以说很久的故事。它们与货架上的从根本上不同，在我这里，它们都有灵魂，我喜爱望着它们发呆，我感谢它们这</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>几人行 | 胶济铁路行——历史风华与前路繁花</title>
+    <link href="https://azure0202.github.io/2024/03/07/%E5%87%A0%E4%BA%BA%E8%A1%8C-%E8%83%B6%E6%B5%8E%E9%93%81%E8%B7%AF%E8%A1%8C%E2%80%94%E2%80%94%E5%8E%86%E5%8F%B2%E9%A3%8E%E5%8D%8E%E4%B8%8E%E5%89%8D%E8%B7%AF%E7%B9%81%E8%8A%B1/"/>
+    <id>https://azure0202.github.io/2024/03/07/%E5%87%A0%E4%BA%BA%E8%A1%8C-%E8%83%B6%E6%B5%8E%E9%93%81%E8%B7%AF%E8%A1%8C%E2%80%94%E2%80%94%E5%8E%86%E5%8F%B2%E9%A3%8E%E5%8D%8E%E4%B8%8E%E5%89%8D%E8%B7%AF%E7%B9%81%E8%8A%B1/</id>
+    <published>2024-03-07T13:09:15.000Z</published>
+    <updated>2024-03-07T13:12:44.300Z</updated>
+    
+    <content type="html"><![CDATA[<p>作者：小蓝、子瀚</p><p>记：缘于征集手记，简单写了一篇，由子瀚修改，觉得很是不错，遂粘贴于此。原有图片，在此不做附加。</p><p>印象中的济南，持稳而厚重。他总是向人们展露出勤勤恳恳，兢兢业业的面貌。本次胶济铁路博物馆之行，带我们更深入地体味到城市工业的积淀与辉煌。</p><p>午后阳光明媚，“泉”新“泉”忆实践团到达胶济铁路博物馆。这里是中国最早的铁路之一——胶济铁路的旧址，队员们依次穿越四个展区，一幅历史画卷铺开在眼前：胶济铁路的修建背景及过程、对山东社会经济发展的影响、一路经历的风雨沧桑、以及如今迈向新时代，一本本久远又亲切的员工日记，一幕幕影响深远的珍贵影像，一张张记录着历史的车票和证件，生动而深刻地描绘着胶济铁路的建造过程和相关历史故事。令队员们印象深刻的是像德国压纸机、别墅牌火柴盒这样的“洋”玩意，彼时的中国，生产水平相对落后，很多东西需要依靠国外进口，但今天放眼全球，“中国制造”正在以惊人的速度影响着世界，也许即使在国外某个城镇的小商店，依然能发现来自中国的加工产品，我们的国家经济高速发展，人民生活日新月异，不禁深思：如果那些挥洒血汗与青春的先辈看到如此盛世，也会感到无比欣慰吧。</p><p>在即将结束这段实践之旅时，一群戴着红领巾的小朋友在老师的带领下来到博物馆，一瞬间感慨万千，从历史中走出来的我们，和即将谱写历史新篇章的他们，都是祖国的未来，从“中国制造”到“中国创造”仍有很长的路要走，中华民族伟大复兴的历史重任应当由我们肩负起来，这是时代赋予我们的使命，我们无比自信，必将砥砺前行。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;作者：小蓝、子瀚&lt;/p&gt;
+&lt;p&gt;记：缘于征集手记，简单写了一篇，由子瀚修改，觉得很是不错，遂粘贴于此。原有图片，在此不做附加。&lt;/p&gt;
+&lt;p&gt;印象中的济南，持稳而厚重。他总是向人们展露出勤勤恳恳，兢兢业业的面貌。本次胶济铁路博物馆之行，带我们更深入地体味到城市工业的积淀与辉</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>往前看 | 既然路难走，那就别回头。</title>
+    <link href="https://azure0202.github.io/2024/03/07/%E5%BE%80%E5%89%8D%E7%9C%8B-%E6%97%A2%E7%84%B6%E8%B7%AF%E9%9A%BE%E8%B5%B0%EF%BC%8C%E9%82%A3%E5%B0%B1%E5%88%AB%E5%9B%9E%E5%A4%B4%E3%80%82/"/>
+    <id>https://azure0202.github.io/2024/03/07/%E5%BE%80%E5%89%8D%E7%9C%8B-%E6%97%A2%E7%84%B6%E8%B7%AF%E9%9A%BE%E8%B5%B0%EF%BC%8C%E9%82%A3%E5%B0%B1%E5%88%AB%E5%9B%9E%E5%A4%B4%E3%80%82/</id>
+    <published>2024-03-07T11:52:45.000Z</published>
+    <updated>2025-02-21T07:59:43.549Z</updated>
+    
+    <content type="html"><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">  <script id="hbeData" type="hbeData" data-hmacdigest="401fb1ba3894355becc57370574aed25e74a3e975801186e4e9644cf0142ffeb">405e28f0af3cf8a73af5cb1e2e6aea5f6d4793d7be82066139546f8dacb204c7cd77b28993180d3d6c4f23e59fdca8b43fef729110dd455e8a9335c6f67abb20dae8724f8707ba5c7072ffd1036a811cbe964052221b9f2573ce685a6ada57b441143e093990b16fd6a30ae00c5202619492ba718290f3955da626516338cd99185e6031871c4a34889cc29cae18e42ee4ed197b69b1156eca89209317db2df4ee5e9b882db01b20926db36a99b3ff995beeb000d7e7279d39c9f761a50ab82de4b679f3adeaa72ddab1ecb9cbe0ea733de3c5681c62b9bda1c3184f553452a978ed296cf54c7dc7ad176564d2377b5afb2c10f6b25dafa60fc968f9e1f71cfbb0e127989e7f859c0127876321302c891e8ab399b8931d75b245963776ae3f46f8ba46e34110cb584d3ce671832f1de7fe7976d4f3963b0c5b135c98367b76ca4d10f7f508748af8f43ecb77a006bfdb65dd55f0c42a1b0ed760833f6e9b4a87a8b89415df176704744c9b3608f3e2267432d78bcb69db31e19aa44acb72e99038bfa9dfd4280b11d6f05a65ca8f6cc59cf492bb01ebab8e87275cb6cc844e1462a9c0f8b4a805634068ae375e11a5e53581a5466dc91a1dcb025abbdf2ffd1e875cc9c16422a8405d377b18ac77a1649b2894a88c172322df7b399494bd2db5532cb4c228740f51176e9e04798382a776e457599c9815b91cea83796afc803cdd42f0f6fc1eebc7985e56a0bdab18596a62142a237e381d1c1867edfc8ab33b1007f115407de8e1ae3539e5b2e37491e348cbbc987a382e5ae9a39efe5c72b2074ac291204a2e1c435322d0758c0d525c0d164f1db06413ad1e6696ce146f1908f6515450eed7951897e6770638f731272cf0bbd2b13f541fb2e89cf17a35dbeb5b0c91b146940617164b5d119de23595215a9202a1da6b824e21da9930b3ac1b50ee1666cf3cfd73dd8eb8766650163fbdb30a6f51013a4a311c9d9360639d004d3bdd210c5dbf82715ab8d1bc5b99118f6c70202c118d01de24ad7c6418e69c2198181631475e06d916381afc81f16f954a5323cd64751a94ae01b6fbb138e6013d99363bfda3546e508eba6d28298af873a1346ae987732a72eff931d6abf6e2b345b1fdc6fd6fdf5f865b39706983313498dc55c253b3c7ca388c4f51d6daa3ae9e0a084aa5e3bc053d7ba998da39490e15b5e580d86f81a14cba7b827d712dcd90ed8b285e4926cf4e1f3ba25a3bdc3d291e41d92a9403cc7c5a915289b9814b286bf6c552b802f95964b608caa52c3de5846db1873cd890e71d5899165adda26f0bd9ee755efa6d54b962416221dc6ec437b64fe9a00c8aba967c7f194bcb098e472de69f810878e4cf43ae37662a596dbb6b91e877fb9830b0cfe0b297eee4feaf00d3df70d7c8544749ce1dca950655dfb40497834a2e25d7a49d0c334a4021f0e40215756b2d779e44854f7bd57863f365ee03cb68c4453c2af97bddfece06037d6090b3178d6770f739d6e2d2bd69657a1e24920896822e9dc82282f1521eba1169a902e63f69913217276aafaa9d344547624a2261dd239581723384de509a2d242ba41d9968ac60ee34c62e8bf81498a36ed3e8352a60e6c11722a7b8cfcf746b74a076c4a4a6ee3b9da510aa3b55eb48d60cf2d7823b6e3669c93030f67f3fb69be75f03d06859529296075308d4ff3c2e5eb79cf035252e0eba9579144a5638cd5e9be5b874059667b045f12c6945b397dc4a749efb4fcf65fbf7960e0a58afe18f784c3681821cecb81b986c92393b89aee8a722364e96d6967dc14b6852e004f75c3b060ef4ccb55b62ae944aa80d4f3c74c5f9c212c8033a5d9faef47684b88327af134f1fe0bd0ff3f9f9f696c7f6175ba54a7af212b289d82bbc5df123b4155737359325c9174accf226d5abdacf0ff826fbac234b46ad6891a3e2a2b144e776f43ce0c230b49b5904f773457d3f4b5a5a3cc078de5beb3df988aa34bee5b734b91771f8ff9777f9a544ec2d718870ec71ed1509d852bfd548339c32c6e0499916200e3bc459acd506174b0d328626850ae7aa79fff6c96d7dfa4b27fb261134dbee7c0a7507712ce6dedef45db4271547ef16be671811c8d94379211cf9539338b36eded9f131af19621e1a4bf7c3b8a59ebc0c402f784bedc1a6632ae19e59731d100151d6e4923f12e17c7a7e3226bdd43b5ca65dfa5944e1237fa862c32c858b38592a6726777d100dda4c5fd72e9cfe2ae143fd4d0cf79ec69f47c0ada21cd92f8568b810c64a04c649ba8525b772fa6e734e4b7d89fbe9c30db5f2b65e4c93b1a1f33d7dc111daa54dd24a547347cf589c2c7964ebd781f0900194defd702c2b55c02c8a1c3d0386514c40c6d98557df207f5a2f5bac72948d3f4f7744b7271e9ea2df236f678c521522f9aeb151c5f3fb8577f5cd7ad35520d953090ec3da3f137bcab9b05baef89a977e79419a8de45751dfcb18925ec51f89f75c62ad61df9b2720c8c18b815ae93c6f1d7a70b159a0254822e9068c86d2b1aa02473a47471d439ba44797285245f388083e9e7c26d7ce1398095385beef7ad014eae5e126e4763c855369ed8b2e0d9bd43913b4f0a569339d1b59e307ebfab94806d040163d4b5123970d67269bf8c31e2502295213a030d7246dad7a8a82afb65d8b53fd52b722ea1c25780cc49c58820c21830716d55aa2b98383d3128de8eec30ada7cfe64460e3ee09bd14203aced48473f9527a6ed43f438133c6ca8560ae914134ddb0498e25c0733334b0e77d6e3b9415d3701fbc6805fe25f4510614d95612d14591335bbd98df563c71fcacd13163ad9690ac2a1cec891e9a25a8520ddcd91fa435e3b72e6fb61ed09810b50f5c4b7155535ddbb899970ea5eca2575c51935bc35a54bb590d7871377bb5c2f1d32858877450e671a9150b929545d93bff63acb5d770f904b7f6c011f87d507272396e8cd8a607a2eee8e6a688fc4b6814d465bf69afe00a3a8c260a7fbeeb8fd48b2b7e91b4876a22b09930718e07fe98ed4daffe586d34de28b332e0ad406f6b08263c78f5eaa37b6140728434b137b04c6fd8ba226154a2b2111092d7fa13b82c1d2c9952ba1862fdca5f1f2103cded4998f4898c047b02d4203edab094954b561a978f013d3f84b10801f3bdab754736fd34bc9cce7c60d4d02c1b370199d62cb1d01276f2da91666fa201178e88d4c762598d4a723da18475c8cc80605b9c96345eaa64ddec2ddd4acea4ebf28c50ab0d5f6a92d778ce4a8189dea3c1b4ef3bdf40a0074973a6e38006b41a5f3bea22445b57e056d228482ed70f98837a947ba4b423a623fbe0fe50a571a268e18e3bf285a7ed01f2477ed4c76423aaa8fef257d6afa38bfa964a39f961e5c8c56e215a256f62a83d30cef51ce5301dfb8317ec2c55f656a69e16e1a1f9b17bae8a4ae5b40ac784d36f2471e3fda2041763d81b9e7d62083992adb9b70aa883c60735729160fee9ed81e513d9d9a8c2f2b968157f0cc2e46c9fd6a786ffa6a52d92bf035eaf9bf84eb60248438f7da0b3412787b275d93ccaa2f845d3f4c9239581734f95c0c17b5e95a850e3e22a81b0a3d6c4e5901db04a239fa4e8c888c0d2cc16320c74680100c8755b6d74bcf95aaf68e9c92d1e63b33cedd8b173e46fdf983e39a931e2ea6f0e42e41e212b245a54202a8ec407c5568f9315bed5c4313b24306701e39ca52c2d4690e8e5a8099534d3d7ba39cdc9adc2202c4488470da90527b598bd684b55d4734a079cb6ad76ce75a99075dd474108ee98103e15cf632db2a8091a28a573924e20b9192abd99f457ce696fd52987c5bc1e620fb17325ffa3ef980ab654c4b0085840132df64fba96191080cebc89ce46b8635fd882dd311ae985bc310b52fe7ea096cb1f4abe7d8fa0f576351955b48aa6b9e8ba23ac5b0bf5d0a791438450a648db9b830ff47ab0dfc0aeb36f4b2a6f9d7d22370b9fbbfa7201a9d254e4d62ceedbc7df032005555d6178cb294fa94eb4b86261b4c7e624aeb67d4ada81a0f727e6969329a3f46629d73e021cada34025179db8771d76ce384a9282ba6e103e2b7dbd19f266c7fa17a4d9fc50edbca464969174a63d46ca7b4bedd5034538496c7e94729572fa0bf03951800f47c335b1264f86abb7b06fd62cd69172037abdc52f41b09d84c455d2f53d4bfeea55446d901e2a50cb4e7f0241d45be7b2b84f1fe1f005aaf85dae238928ec4976680ab06cd559b775be32334ed7180475d0756ff337e599cbccf9dbe136fee0326f0ab80771dfe2f8690c3bd35a9d0691982c3226eaf626fefa1fe2b047db4ab927ccccd6d107c802982836518edefde6b36a3f5378d77ad34704f87ee025f536cfa3f21aacb70cc140671720e4ed168c5d42965401231da61d01990e9aca9aa662a4a93eb4936f10c449fc4751cc063283274b9e223e1b987c96d0d0a10a262920706b124af36ad535cb1070c9b59e00eb80705fcdc86c76c42bcb207e62a025277583a8f5bf10e617ef0a5b956e3c8f7c0f8fc8ec4a1fb77a74c3ef92eac921012b154c9c9e6a327a866e2f1aeb970f8ca73809d01bb157e83cdaa0b2e35e214fa1288b590cdc34c8dcc92cd8a716984b0fd209c9cb9c4d065898763895cc284ca3eadc4175740234cbb17e4090c08625389fe846327c73518ac0fd977f5</script>  <div class="hbe hbe-content">    <div class="hbe hbe-input hbe-input-default">      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">        <span class="hbe hbe-input-label-content hbe-input-label-content-default">Hey, password is required here.</span>      </label>    </div>  </div></div><script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
+    
+    
+    <summary type="html">Here&#39;s something encrypted, password is required to continue reading.</summary>
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>寻常事 | 踩雪去</title>
+    <link href="https://azure0202.github.io/2024/01/18/%E5%AF%BB%E5%B8%B8%E4%BA%8B-%E8%B8%A9%E9%9B%AA%E5%8E%BB/"/>
+    <id>https://azure0202.github.io/2024/01/18/%E5%AF%BB%E5%B8%B8%E4%BA%8B-%E8%B8%A9%E9%9B%AA%E5%8E%BB/</id>
+    <published>2024-01-17T16:42:49.000Z</published>
+    <updated>2024-09-18T06:30:25.663Z</updated>
+    
+    <content type="html"><![CDATA[<p>凌晨，鹅毛大雪。</p><p>傍晚，操场踩雪。</p><p>适合读张岱。</p><p>操场上五六个人，有很多未曾被踏足的雪地，踩雪去，此时适合听一首December Composer，没带耳机。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;凌晨，鹅毛大雪。&lt;/p&gt;
+&lt;p&gt;傍晚，操场踩雪。&lt;/p&gt;
+&lt;p&gt;适合读张岱。&lt;/p&gt;
+&lt;p&gt;操场上五六个人，有很多未曾被踏足的雪地，踩雪去，此时适合听一首December Composer，没带耳机。&lt;/p&gt;
+</summary>
+      
+    
+    
+    
+    <category term="随记" scheme="https://azure0202.github.io/categories/%E9%9A%8F%E8%AE%B0/"/>
+    
+    
+    <category term="我与山大" scheme="https://azure0202.github.io/tags/%E6%88%91%E4%B8%8E%E5%B1%B1%E5%A4%A7/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>书影音 | 看完了请回答1988</title>
+    <link href="https://azure0202.github.io/2024/01/12/%E4%B9%A6%E5%BD%B1%E9%9F%B3-%E7%9C%8B%E5%AE%8C%E4%BA%86%E8%AF%B7%E5%9B%9E%E7%AD%941988/"/>
+    <id>https://azure0202.github.io/2024/01/12/%E4%B9%A6%E5%BD%B1%E9%9F%B3-%E7%9C%8B%E5%AE%8C%E4%BA%86%E8%AF%B7%E5%9B%9E%E7%AD%941988/</id>
+    <published>2024-01-12T15:11:52.000Z</published>
+    <updated>2024-09-18T06:34:30.094Z</updated>
+    
+    <content type="html"><![CDATA[<p>BGM：朴宝蓝 - 혜화동 (혹은 쌍문동) (惠化洞(或双门洞))</p><p>1月11号看完了《请回答1988》，本科的时候，小马一直给我推荐这部韩剧，一直没有看，现在才看完，是一部适合大中小朋友看的家庭剧、亲情剧、青春剧，推荐。</p><p>会被双门洞的街坊邻居们的友情感动。大家会为了给孩子们准备圣诞礼物开街坊会议，一群大朋友在圣诞节前夕给小朋友堆冰雪人，大家会在吃饭前让孩子们互相送最近自己做的新菜品，哪一家有什么事情大家会同样地把它放在心上。几位母亲常常聚在门口的台子上唠嗑，一起参加比赛但两次出嗅，一起去算卦，一起去常去的面馆吃面，她们是双门洞永远的豹子女士、一花和善英。几位父亲常常是由成东日跑去凤凰堂的门店，“ge，喝一杯！”，金社长紧随其后，有时也会带上教导主任，男士们负责养家，责任在肩，不得不成熟着，但其实也像小朋友一样保持着童心。</p><p>会被双门洞五小只的友情感动。从小待在一起，在同一个屋檐下长大的五位小朋友也许早就是彼此灵魂中不可或缺的一部分，每个人都有自己的位置，德善的外号是特工队，她是双门洞的开心果，有她在就不怕不开心，喜东东阿泽是大家的团宠，虽然不爱说话，但总心心念念着这群朋友，善宇从各方面来说都不得不说是努力学习的诸位榜样，狗焕虽然嘴比较欠，但也永远为了这群朋友冲在前面，娃娃鱼也担任的开心果的角色，点子最多最捣乱。各位尝尝聚在阿泽家中看电视啊，玩大富翁啊，阿泽长大后回忆如果想回去最想做什么，是回去跟大家通宵玩耍，那一刻，所有的友情剧都弱爆啦。</p><p>会被双门洞的亲情感动。德善择校家长会议，抱着妈妈说自己下定决心要好好学习的时候，娃娃鱼跟好朋友骑车摔倒，赵部长立刻赶来带他回去陪他吃饭的时候，善于妈妈因误认为善宇抽烟一个人在房间流泪的时候，罗美兰在等待正峰手术前坐在空无一人的医院大厅前发呆的时候，成东日站在路边等远行的宝拉给她送备用药的时候，这些是再平凡不过的时刻，也是亲情闪耀的时刻。</p><p>会被双门洞的爱情感动。善宇和宝拉双向奔赴，阿泽坚定的偏爱，德善下意识的选择，正峰和曼玉一见钟情，为爱情勇敢不扭捏，正焕因无数的犹豫而带来的无尽的意难平，都是向往的爱情。</p><p>1988，如果有听到呼唤，请回答，1988。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;BGM：朴宝蓝 - 혜화동 (혹은 쌍문동) (惠化洞(或双门洞))&lt;/p&gt;
+&lt;p&gt;1月11号看完了《请回答1988》，本科的时候，小马一直给我推荐这部韩剧，一直没有看，现在才看完，是一部适合大中小朋友看的家庭剧、亲情剧、青春剧，推荐。&lt;/p&gt;
+&lt;p&gt;会被双门洞的街坊邻居们</summary>
+      
+    
+    
+    
+    <category term="灵感" scheme="https://azure0202.github.io/categories/%E7%81%B5%E6%84%9F/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>寻常事 | 今天很暖和</title>
+    <link href="https://azure0202.github.io/2024/01/05/%E5%AF%BB%E5%B8%B8%E4%BA%8B-%E4%BB%8A%E5%A4%A9%E5%BE%88%E6%9A%96%E5%92%8C/"/>
+    <id>https://azure0202.github.io/2024/01/05/%E5%AF%BB%E5%B8%B8%E4%BA%8B-%E4%BB%8A%E5%A4%A9%E5%BE%88%E6%9A%96%E5%92%8C/</id>
+    <published>2024-01-05T09:01:32.000Z</published>
+    <updated>2025-02-21T08:00:01.485Z</updated>
+    
+    <content type="html"><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">  <script id="hbeData" type="hbeData" data-hmacdigest="3322e68ef27c5bc9935bff8203bb1eea0e040fe790b20073b43d2f7a95739570">871f979349ec786f81da32cb28475b724eb79a0e9000f67e8d019cfa7b14030f1f521703fd26600cfc41025f35ed679254f1d47cc8052c602000739e0e1ca3a602cd8fb63cfa6b90a51f1488547570328a6c65f2e164df1a079a452269e6a8052775a8b1db4adba73138e8ace5e1c67796ff4568931584c1eea6905c8d9b20e17011bf95a045a696b377fea20a7bc44e3665680e44a7a954548a4d617f5760391a522db31735cebd7ccfaa0d6ce79bf640749aa48932823c19a08b862b2003cd2519630ac36ebaa7c4c94ab3d3748aac023dd57f91bcabb62aeb07c5b194e765e8c4648051a0b41633011db5a281a205394abcc8504b2f4cce0470570630826f128baf74f66a49b0cfddc78750a4f7a028a9217ed6a133601f2f2b5fc36057b49baa7f26e013d4b1518dcac2a6063aa620bf19af6a59c793d87385df8694bffc002a675a8d9279c494d97819640853f9d4075d323d228413d60fc492514585d92619e058b84485a8aa9c7dc8d3d9394cc578cb5cf066ab1d8294168a11f47f44e8a0d5f912fdc19ed2a713644f5717316f065acf67f32ffd7efab581445c6734</script>  <div class="hbe hbe-content">    <div class="hbe hbe-input hbe-input-default">      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">        <span class="hbe hbe-input-label-content hbe-input-label-content-default">Hey, password is required here.</span>      </label>    </div>  </div></div><script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
+    
+    
+    <summary type="html">Here&#39;s something encrypted, password is required to continue reading.</summary>
+    
+    
+    
+    <category term="灵感" scheme="https://azure0202.github.io/categories/%E7%81%B5%E6%84%9F/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>仪式感 | 跨年啦</title>
+    <link href="https://azure0202.github.io/2024/01/01/%E4%BB%AA%E5%BC%8F%E6%84%9F-%E8%B7%A8%E5%B9%B4%E5%95%A6/"/>
+    <id>https://azure0202.github.io/2024/01/01/%E4%BB%AA%E5%BC%8F%E6%84%9F-%E8%B7%A8%E5%B9%B4%E5%95%A6/</id>
+    <published>2024-01-01T14:30:38.000Z</published>
+    <updated>2024-09-18T06:26:57.480Z</updated>
+    
+    <content type="html"><![CDATA[<p>The new calendar. </p><p>跨年啦！</p><p>昨天晚上看到绿地大厦上面有在播放2024新年快乐！</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;The new calendar. &lt;/p&gt;
+&lt;p&gt;跨年啦！&lt;/p&gt;
+&lt;p&gt;昨天晚上看到绿地大厦上面有在播放2024新年快乐！&lt;/p&gt;
+</summary>
+      
+    
+    
+    
+    <category term="随记" scheme="https://azure0202.github.io/categories/%E9%9A%8F%E8%AE%B0/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>小惊喜 | 经典作品合唱实训日记选入山大日记啦</title>
+    <link href="https://azure0202.github.io/2023/12/29/%E5%B0%8F%E6%83%8A%E5%96%9C-%E7%BB%8F%E5%85%B8%E4%BD%9C%E5%93%81%E5%90%88%E5%94%B1%E5%AE%9E%E8%AE%AD%E6%97%A5%E8%AE%B0%E9%80%89%E5%85%A5%E5%B1%B1%E5%A4%A7%E6%97%A5%E8%AE%B0%E5%95%A6/"/>
+    <id>https://azure0202.github.io/2023/12/29/%E5%B0%8F%E6%83%8A%E5%96%9C-%E7%BB%8F%E5%85%B8%E4%BD%9C%E5%93%81%E5%90%88%E5%94%B1%E5%AE%9E%E8%AE%AD%E6%97%A5%E8%AE%B0%E9%80%89%E5%85%A5%E5%B1%B1%E5%A4%A7%E6%97%A5%E8%AE%B0%E5%95%A6/</id>
+    <published>2023-12-29T15:01:00.000Z</published>
+    <updated>2024-09-18T06:26:08.175Z</updated>
+    
+    <content type="html"><![CDATA[<p>济南天气有所回暖，道路旁的积雪融化了很多。不知不觉间已经临近期末了，我的一门选修课“经典合唱作品实训”今天结课，我很喜欢这门课，相信选修课班级的其余几十名同学一定也亦是如此。</p><p>这门课的主讲老师是崔颖老师，犹记与崔老师的第一面是在软件园校区，上课时间是晚上。我从中心校区赶往软件园校区花了不少时间，刚上课时，老师便问谁所住的校区不在软件园，说下课后带我们三位回来。这让我这个初来山大的学子觉得格外温暖。</p><p>这期间我们学了《我的祖国》《唱支山歌给党听》《萱草花》《永世不忘》《彩虹》等等多首经典合唱作品。崔老师总是微笑着给我们讲解乐理知识。上课的时候我们女高、男高、女低、男低四个声部既分开练习，也一起合唱，崔老师往往是那个从上课唱到下课的人。她一面弹着钢琴，一面带着我们练习，即使是已经连续上了三节课，每到下课时却总说感觉上课的时间好短，怎么一晃就过去了。每次上课，我总能被老师对音乐的热爱所感染，这让我不由得心生敬佩。</p><p>今天崔老师也像往常一样提着乐谱来到了课堂，她的第一句话还是问我们最近的学习生活情况，课业任务呀、期末复习情况呀，等等。我已经习惯老师这样的问题，但每当听到仍觉得心头一暖。“春的花，夏的雨，秋的叶，冬的雪，彩虹在天上……”唱到《彩虹》这首歌的时候，老师会让我们围着教室边走边唱，我们也总慢悠悠地绕着教室，和着节拍，伴着琴声，缓缓地唱。学习上的烦恼可以暂且不想，只剩下欢乐的音符。我看到同学们的脸上都洋溢着轻松的笑容，有的同学闭着眼睛陶醉其中，有的拿起手机记录下这一刻，在这样的氛围下，我也从心底里觉得欢喜。</p><p>我自认为我在音乐方面天赋不高，但总觉得有趣，便选了这门课，也因此遇见了可爱的崔老师和同学们。</p><p>通过这门选修课，我想崔老师教给我们的不仅是乐理知识和合唱技巧，更有对一件事物的热爱和执着。作为学生的我们，也应当以兴趣为导向，在自己热爱的领域里深耕，有一分光就发一分光，带动更多的人为了社会进步不断奋斗。</p><p>链接在此：</p><p><a href="https://www.sdrj.sdu.edu.cn/info/1003/36620.htm">经典合唱作品实训课程学生 贾贝妮-山大日记 (sdu.edu.cn)</a></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;济南天气有所回暖，道路旁的积雪融化了很多。不知不觉间已经临近期末了，我的一门选修课“经典合唱作品实训”今天结课，我很喜欢这门课，相信选修课班级的其余几十名同学一定也亦是如此。&lt;/p&gt;
+&lt;p&gt;这门课的主讲老师是崔颖老师，犹记与崔老师的第一面是在软件园校区，上课时间是晚上。我从</summary>
+      
+    
+    
+    
+    <category term="随记" scheme="https://azure0202.github.io/categories/%E9%9A%8F%E8%AE%B0/"/>
+    
+    
+    <category term="我与山大" scheme="https://azure0202.github.io/tags/%E6%88%91%E4%B8%8E%E5%B1%B1%E5%A4%A7/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>几人行 | 我与概念与推理研究所的好朋友们</title>
+    <link href="https://azure0202.github.io/2023/12/24/%E5%87%A0%E4%BA%BA%E8%A1%8C-%E6%88%91%E4%B8%8E%E6%A6%82%E5%BF%B5%E4%B8%8E%E6%8E%A8%E7%90%86%E7%A0%94%E7%A9%B6%E6%89%80%E7%9A%84%E5%A5%BD%E6%9C%8B%E5%8F%8B%E4%BB%AC/"/>
+    <id>https://azure0202.github.io/2023/12/24/%E5%87%A0%E4%BA%BA%E8%A1%8C-%E6%88%91%E4%B8%8E%E6%A6%82%E5%BF%B5%E4%B8%8E%E6%8E%A8%E7%90%86%E7%A0%94%E7%A9%B6%E6%89%80%E7%9A%84%E5%A5%BD%E6%9C%8B%E5%8F%8B%E4%BB%AC/</id>
+    <published>2023-12-24T13:09:24.000Z</published>
+    <updated>2025-02-21T08:11:56.451Z</updated>
+    
+    <content type="html"><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">  <script id="hbeData" type="hbeData" data-hmacdigest="da8ed3f81992321c7a67721bd8dfd92bbf76c8113effdff13f048cac500f48ca">2baeb9145c4ce48cdcceb01b607d2c6a33cc1e8683841a1519398d5011a1f7fdecdea5386cd9849798c4e767415828e6d75184920ea0008c6623e0e6ae01f6bdccf9bae8a628c231d5768c56507bed80a980094428e3b63f1be75b0b4c00701dce637a7bad4d6502959ded9d6af95c1761939da5110827b3f8f13f32eebf0ecb328d25992a1074f12329821c0e38ef6f4094118a42ae11e5d32a5ccc64175cb0b90e697dbe8827ba68959dbc9d68458cdc0cd99561f772ab2e6203ed66f274d7002c61055589b2609e68a04c4411bbe04f2f4b4c5d945245fe2923861b9c191ab1021262a549a9e1f462bd47d7294248db2f11dd899806c78d481b53041d5ae69c0d40be9b67e5c574716115c0f158b489ef36fc395781440abb261c7bc54d99a46a6c2aa72b770f2661dae40ae0314b1e0cc7d245fab1f9f6d6bb5ec0e3cbd008b59f1a682b93ce5c09f11ced418d76329ee49c1f399df9f7b34d4a4634bd181a50dfbce2435b57dfd79ecda7dcd69c93277501e41c9dfdab0f24856bedb379eb5f3e6429da4c1cb98274c9fe6e9d4d7d376d35b8b4ce718fe11acd85461bdbf56cd876d5f50c0d9480f93b66701a96dfb8660251c2752682b50b0cb355fd76875a18c917d84c6a396f76783ef18d263ec160cdd39234768e5d02efeab0801eaf297f0d44638eb262029209d47831fb05f1c7bd31004f5c4e73e0507179abd46cce4125d3ca1f654f5848b82f8aae556a66a9b56b7d5d4d22ba1e3e45a67393a776ec0a9dabff3cc4537891d204bcf7302941866175c921f9721c7c60298f5fb4da54d876a0e5a95ce858d6fd083d03ad6f4ad521f785f9851aa4f5dacc5b2c4f9ff2fb0a9e8112cea0fdaf4413f615f200fd329a6b198089f0f218987e9a60142ef6c33c2986af047d7a41c316108685a3cf00af9dad59481ddaac010cbdd7871f8604e77af38bec8fe09f0c25c5ac9caddae480c64f82500ce134211584d1528dba3bdddeda8126053af6db6f94eb163b22a1be904f1b2191250e6786813f819b3377db7657cc242a7dcffebddb7d56c51a1414a851ecabb011619aaebced3f4d78019795cfee5292abda22f1047f5d176f6f99f8218af622635d2457b168499d5770aafa5f630b8e62ecaa01b5a3bad4cccbb86d37be3aac53afb087df07b061b998f35a398b660e08f13294147be8aabc5df6e4dc68b104972bc6fec142ff99a13f739d02a011c25c0b9a26ea057501a3f7902fb133debdb296d1db71f909a9787fc376889e80e16e1fd4274cbffd6fc80b03aee9b95d57974fd7fa06537c5756c3a0703ed5beb81ef274f1b876b9a86d0e1c3bb8be5b342b1578fe9d646d973199ccb61b77de456fc5658d604d6193ad456c2b88856adf794cfb8dfea1883a90f0c0f0bb3a3ca3469f7bd271ba0adbcc97ac8c4c22d2a67ad09fd9e1dcd9989ded56177b8b075eac8919b69662e6935cfdb78cce3b28d8c8f7b6eae4c513a2f1a05f632e658d8589107a659f88e3b932f5bea041f697ca237d6d83c2ddc5517d63e2514420fda39bc12914402b7d7143e2d4f620ed027d6091b8dea4bfb02491a5bfa78fe8b7486f99fdb182acf5f8b75c891b2830a3ce63120a90a4bf63e6d719a6eeec6bcc6afd38f5d9b2ef5cbf4185bf2444fe9996c5a7d4034dadf64e763749a74c63fac2a8751144be057974bf458e50940e43ec49ce25ce6797bc97198cdfbe112a41fe95cb0fec817cbcbbf8655d427c43c383e0d3398db00d7e0890f3cb2cea27b711a080af665abb554a1ae56e85fa13f6608929e9c42e54386ae8b0847b956dffcff6e55f54c4da4f5dcd60fe8a6f0e286da77a89f2cc79b440b0dbda9bf78a38653e19e726ffd0e02c091e8b40e7481efcec5fce2b7eea4f6c44e970f0e40f24a84342c77c3349b11cd85d8c7d314b43126db41c82cf6f79903a2e2b071412d46f7a9df0e61e1be6f0fa6e61f390842eb1ea915ed8eef5b3bbfa6435c0a1ed11dee320c1bf46e50ff92bddd6ca161630ecca6d8aa0e244ac9ee88873299f0aa5a3f1bbd5743ce8a45d7763e308dce3792a86b83f9a55a4e5ffc811570c459a49ee5c1d2c8b624d9d32c7fef2d9d0bfb7acb0e71efb43283c2af3ce12b7861899f9623dea8e15c856b857edebfa502e70be767065c6e665e92f6e48eb11ea330b318c6a790addd675e0c48481079627912181d38012ca345ccb23a1f727edad80fc5ae81f6f681268766a2d2bea580d790c70a3beaec37d0e7376479d24031704fed9ac8c044ab2d1d0a940e378813d01bace0b70a6bd83f65a407ce352a975ba3f76a640da36bdfc4ff89aea16476ebdab2d76aac91869eeb5f27e08c5979a11e399e2d47580daeef48005d060ab75ff1d97fc460563f48e7b645221cbc2521b3568a7fd7605127b73f0f7fc075c84cf5a5ec11f26410cdc5307456fa97ab8d4fcd69b7cf0266ec1686a00caf5bff9d1d113a0d56c1ed37cb7d646059c987c81ff83c9b3dce492de22d04fc6a570bc763ac7de21b0b0a4bfbe565afaa23ac6856e20300454cc220818f7279a33fb5291e7e3200ce2c21d24d0933c29ab8e075cad569cf35a7ab99f52ea3ef1b7d33ab524749f369217a21309b95009baa2a03a6f8ebbe9df7a10a9f62eae91e6b6438018eace651830fe1dded6d0e49cbbb6644113192afe16c0f85d94fda18a4d53cdcd0d5bbd1164d5f2d7aef2195f25caddf306b5a9b35f2786e3b92a8a8b849dd14237cc9f7dae3669e23b3c01fa893e5dd31cd61dfce4ca7d115bf1840086ba2a92e4ba88f2217af9a58805fc235fa9fa8c0d02126bceed681944321ebf42afc6b86f30afc20e9502d57cfd68fcd924792780e7cd0b3e912d0318b5cc25459f5024dddf99a712ea36d1124817578baa3533c42698d7b03d721994598c958224d0107aec01bf8d0489cc5b4b4bc624fadb781cc18d35e2422961d9fc1a14c18d7cbf9de7e368c5977cca1723afdd86509fe8ee63b66d84971a4f0b31459a66baf389be32303097ef3ae49243360cc042545b7bc99a0ef7f54eb53bfde4b26d7bded5931155af5afc7239fdc9ebecb091d65a7b0b7de78cc6fb6a9ab3cdcc2fe75d8bde3933f630d1ce1295dabcfc3287bb1ef8012a9a9dde9580108b66d3fb637a7ba136794090ec19763667589ba0fe3e1f66a78126d02264ae881a2c36cd450323a73fdc276147570244ae903a828223a1276cabf96fcdd49bd694c19248fb5486b297f783e1143d75f1da1aa3b993fa1a30136c5f992dad9c2b026e1e0a7fde9d62187464979d5c3b2c7fbb5ff04485c0173567485abb5ba875da061f815711abe17fdf1e23acb8d380e83e8c3b01238cbf0ec32b0e378860c722e313f4872d78402ff02426ed71c23283a304d7db0e66097eef1daf531c029c2181ca038a8ae0efc7fa80f8e0d3bf60977365ceea7700f2a20c4548774e96af9134b2dd6497d03fac9a49eb494d7ee2b6070a9ea510b0f3cab79b4d879ded781af952153df6259fc7ef09d92071ad74db41a0a84a10ec30a8ce090c42a5ebfef262aa50fd25bbd9ed25405026ae69f5bfc7643bae898fb877a55e5d0e36306fcb726faebecc34e30fb60cbed6adf3165c803f84c8f91f8829654386ff6ecd238cb07016c971e38945259a568ea3ecaf86e4557ebf66027e96721c36b4ec0ef9ec8a0af336a24e6f1adf31ca871582292636b2785ff78b71b8d942496014078d14d722652969acfe02f172e6ea80ab95fab1004aa88f87c646a8ec6bec5f8567ead6aa496138ca69049669d97559d7bb97ce5225d0e0f5b900a9c5755a8fe47bb97ae21ee5dadbaf8178d325a451f5eae09f2c4e2eab484b3616a2de33c9b4f98272d69753d183b0e7d1fd5c9d89e8c4e860ac1eefcab6063b00496b0432f47dfb2fcb85839a7a7ea07843b8df1dd0556a019be8150997aa9f600b01e25a6de1d366a428b3c9db21d43a44c001a9ec10880bafa3d7052ac299fb1de6a88cbbbb137c1e698184af53120852f9da9783965919c79e153e876f04a744ba37dfdb0b1935d6cd379b6c67751a4cc5fa56b2838e6f2ab494d5d109338945951f71683eb4193949d1db1eecf3792f72051ef4e28f49297906a8e05986dc6130d61078b3ab5504bdaeb42acc26a739a0dd5aa889d0c6c12c293cded1fcb756fcab5dd8b870ff003993729a3a1fe82effb26001c1f62dadca4d8d44c1e8f9255458773837393c3912c48b244544707175bba17aa562fda5a44d23a34c58b1b6342581b4a65c0901d3eb4cd69dd4f5a57f3841346f06ec17f1d0cde7097aadc87f95796377d3f81758f06d8cd7e25ae1d99be5c1e7faeff0fafa5a008a47ef0cb2a94ede26c20db2923c7f55f136cd13045aff08ce33153c6e83f295a6dbedfbd5d6f2f3a0ec3bd731f41ef1f7f2041c21ed139106a781317b4ef1639101f2ebcd2f49e153179525923dc372002c0dc75ad191185cb20cae1c580e57ea8f396b73142e388c46a0ef6e39cb493cd0f720d1ab64fa495c15582040e76d46cfa72010c22a463aa27e221f4fb9799e14623f182f7c97c6d7a7da46c40ba35efd6ec83165cb5f248db2fab323f750be2bdef461308ad388982712a08309e590075fd274acbccf09abd2028f658fba2e23942840ad65eca702b0dffd6c9308ea539074eeb7f62117391c539e9c95e96998bb6b1f32a7fa8eb4855d3c7c5857ab74e772309f702dd8e476e3a3d9b670450a746cd7f25322a581633da5c4bc7fb9dd308b3858d3f5369dbb32770c8080f32d66f2ff54542120284a47545773653cb4cca331074e25a9e18e7f540420161b7c726e41e20f351e71dc11b65522db827700cec0b9e11836e2127397dbc01e432abc0edaa704e7e180913722ac4bc7622391ea3c4ddbad4615f5f2a610b1dad2e35c08a2d1495f5c9d31b467b5af7fd264f15b8fbb8e19433620057f1e7f74b17a70edb8267b59b78f824042bfefa71de1e2d72f51a45f9c47e2453597cc7b622131a5105e64f3c5f5ac3d1d34ad3e28af4729f1d855132d7fadd40ec89442fd91ab526ba6f2243613cbd54b1cfb490da5bc715e6ec69659c4338a44cacd51bc5fd2f329bbf23628b4d3a62e8cd2da1b02c36a9ee7a24df6e9962631f620d5464db430a1fa2bd7b3d714cb96e3c72e23fce9f238d41379e44bb9c8d3e0e0c8c9b9da9aee0a440e98dd7b5f0364e526040193a5e492cdbad10ab56029868256c7760030dced287a53b4223259a5bcd3ab15c53733ac3e5293187fd75591825d78413ff3d60ed93c04211a0c3536e96cf6dda7645e7c79dabb6c148f9f7bc73f21cbed03a98a9adb56a2daed39b50e5c631e020223df1524b50035ee334cdf9ab5c4713479c99db31204d9694dc1c41e3e8618e73e4f3839fa31c5c63f35753122c0d1dd4c64b2c9bed0868eb54a2d24bbf26125f155f3d0737c239207ee0d146ea8d5f54c90d9892d829c7ffbbd0d683c04ead9b93e902b8b4e20d02fab4d7df37f8c07a9f347c531009362e428badb54938aba3125f18fed6d82811e344c7066bbd48560c70809af586b3aac3120b57b6d3c530d55134040e7f75259e9f0e3df1df494bb8530587cde5260ac6b5ff8ad23136198c7de2961b0ac9e229a481bb6113b52b7548f84cf304ea0e6d17f3af3073e3116087f517006a809fa5239698aeb5f547c964a0d0253772a36eabf0fdc817a8adade9df9160d969604b90acbee82f02c4c73ec97813467c48a7fb77d6eacdb4de742f6f300791f26d9d7d2ca6d32b8e2b4f2c08e0a5432674c0de65d805c8e0dbedc7266f1e548c5ce4fd929de6ceba56aa36722e73f33294931aaed446a6e00b3c7aae5c64e6ca9a67645e7c9db162a3012450b91e0ff907206a59387491c360e3fadf53a58d6f314be84e3e2d4f8fd9d3c0a90a8af7e46f71f2d62877de1fea24bc8d17858cf3877cfcafa10b725981684200fbf39f735c187629312099002419c74a013de08d039a22d552e5f1503e9e715d5ab23c72689d30a3fc517d41153c378b9969624da544884c8fa064f18730ec6a6d63094591a5fcb5b60b84b3fc437c828cb8340b839fce26a38ae4e47ef9f4267bbfdcc8ca2da2a2be3bb696744b12d0639491f2da4109b4f8c0729d542dc317627ae908f59f9f009ee7eb47a69c8959bc2b3d46f83a57ec417c7cc4d897b548bb782f068d009a79452665a1f6acce214aea5e94d9dcb3a82e4fdac52a5f361a1de0c4526e78be69f5fd42941f2f8ea9ba2db90b974e722880053bad48ef156a6af8b015a78c5d82fb9c649f0eb12470f45b091c875b44567129f6c539b9eb96eeaadfa986a064e0c1949cc0abeeb080f3a5e5f21fb7481b7f9a7a5a733c1525a16a333f353bfa65f1f0f04425888661f9b29a86944a047ed23ce938e35f342907d22fffda3b83d789c7960e4a6c7114cb2cbce5636d09a3f0481e52a19553dc3eaf8eae20b1881b494a851d837641a9aa42af06951a8bd91f7f4e05241b231c0f30033668fc367baba690683d77a6c360a827e0b1349ad4afe6bd7e3330eead465213db84fb1d6a99960f47b44730d562bf49448c992595532d7cf6dcd653015bcada12e4c9dd6d00975994cbb731f60dc069a542cd08936684de8146248627c1ea9e65e8bdd717b28a5de83f679ac208efe180bfc25111bc30d79ac466ff09584727de35cf2799639a914f183aa843d26afcf81888ea054fa8ff9ca00c3b66f354068ee9c5b67442898263f44c81afcff516ffe1ce096ff86630823ddd61bf3548d950096e1c1f4f246f2ea97104909b2ee4ec410b08ceaadfd2347f72549831d2065f435614d4eecb5532e45c81ecbfb0ac8acf8cc3625b12659efd7bf42a7159e225b6e389e147e5751dd55c5dbf17d63c7f218c9ef3454f0d2b3fe1be765f45aefa2d9e3d41843198c37a11734aa2bac34a4d07c4a1aeb11b1c05f6d8614910a4aa5b318d36a3eb617695661e3c5b5bc73fb6aedbe5075814c1f43dd628e7f133d5a49c1a9bc356899a5398303017df61308e159bb70bed8f1b805f6c5654ac44ce813feb111ee19ea0b07199a888f5ce077ce9e7cb6bd93a58ebe0753903ed71b348a10ee1356102cd278eb86d2c3bdf6a1956df2b7128f5b3f740cf1161d462690d5a6fcbfc93e4129a2626994e5c9a6e36a902925622c1560d03b2d3a2af7a2f6b7d7eeb7db5ac50008ebe8e500a5c37e12182dfa7054873d4ca06add8325ccd4b41ca86c67febef1d9e99361500b1cdce30f615dd36615b33f77969bf5451c304a0c236cd29dcbc41bab6098db560fdb094aab1a0fb897e4c1dbaa71d77f9a33000cf400731c4c857abd42297c7db78443d365fcb2d708b33498e725b884a827ffd175486fcd32363e1e6c2a342b1fe9f07ad437fad559d3ff061bf95c9d19d814658146321e55c4f5207277254fbb4ec3498d3a38030de559cab20db6e73a17cf53ab3807e622e7416110f214611bc09d9056bf6fa37963a40d228f8e16f11f2e01f4cae07e0433942491a8f2788ef4a2560c6714933ba8ac070a851d9972a5a60836379e649d356e1e22a32a8f4e2ac0347f8d8f6e6f1136cb868f462da37ab9a43379d0957171507c3bd8948bf15fe1fa45115ca7d17472b6ec06e1f27638c83e44747b87ee57c3b0474284fe562008c252c2eafd408278403c68ce7b933378269893099527dcbd4ae7a11d78546cb2334ad586699259e7d87932c0f4caa75423cd04f19f6f10362b9e8d8c9b8cf6c51d542107a4b7badd9ca4914fff46c3cd6a757f6e54afd8c2becc1d4e8443372ccafcca1c115af0be7222e6295d5476cd63db7bfe272f0b6cc5dab2e41c9a917d5817468d1452a5ab0290e0a1211d2f14e5453372a969e6638bd6327fd591e8764737fdfb8d2dae0404d67530d794527b8283293712b5378e677dab14d91541f766c872f3d10756631c9925630cff5fb6d9d04bf8b9807251af1edd6deea38306acb9151c8dc620826162195d35639c0c22b6b2610a37a955eb6aa37dddae87b92a68251728569f7efdc0cc9c47a4b0b9d2aab161fd1d0ee8b0068cc76093c3b9628049b3cd8947a0b7a506886d518fd681773a1a6fc600506e994e1b16624018527c77303391e6ff07124bd084e075f7aca0df9cb4461457eb26ba411ca73500e9949e305608c60d8993c85e6e2494d590ae1248ba474197bf28e4b24c17ea5672152fed4cade6708849e98355970ece6c1f1f353a0c5d2ee134887df3beaeafad52112e0b7eb4d5dadce51673247acbd5498f649f8dbe1e4397d2ed68f0349352b00db46947d045ed27520cd6903985c087d6724c547ed5b199aa3cd9ec956332d15eb973a924dcd9704fcd82e96684f17b394b7960fb2e058d73ae193ceff901de78d211e2efe5005382af53784c963be0e4cd4055d13c6a7216681d30081db940b18943a077d6ae446d88a490a6e1109783de5c08bf369aee979c4374051e215a85fc7b31b88f09dec51131991b2fa2b61d0019c1daceee3e3d05296f682611e4d9bab66dfdcfed187f412f63b55e06fdf7526adff30236f76a2dd72b4529ad35010c47fe0f6a370384ac3603d5cb27a8eb05561f643c2b1fb954f87a692b571c8c548c254fbed57f46c4b51452483e4d7cffe693901f8367f50537c756bed60fca3550e9c0478233736498d53078cca5e59713e171cce88c08d312d6e1166364247c8b6be37e0bd433f1376ca50d5e311c83c8e075306b2c0224397761a31843dc9532744a0b6b51310407c6ba1d8f556bcb0f7b035552c56ed1212c5dd5738183f74f5929eb25ba27be4b81198fc744f27f99586e2b6101cc926c6d793bae447f607244d02767e5cf9f06c8e851af1c5996e257ad1f712be577a0a0d6e64b6dfcb2d13e6b709724c339e27feaff77706f3c11d22fa99284c2ad6d6d6819cb9fa31ae617e4969379fb85ad4b53ff81981fbd6574c9c401ecfe635ca8fadb5e14a0ae0f48064278feb25ffeef145b0b486f1af12fad613a2b0a7919236aee864ab3e286cda0f57dcb4a4f2496614ae45ad3a886cac2dd5bd2581bcbec708274f70f593dfe600fd3a7f9cd8e855a55d57595f8e780679e809f7d9831e6a41903c5381e4294f2e8d6521d4bd79e0352134484ac4aed76fb491f5f8f7f9c47a08afdfa0700e301428646e89f1c4938dd5c745003bc8bc2d84a0e4dbdbfb260ee0d8b53339982b8f66cad651d01e6a1afd0c5b36bfd622203344cd6cf76b0e146ef1c1fe111788a68bdf2deeb4b02eb1cb7e72fb21032b9c73d263308ef1864cde9d10e8c6d4d1ca21c3e73c89424f6e187e07def70e76290c1836ce7c010427df8716fad6fae2dc5358221ce29f9724d7b104282580c8a3fe8b36e9586df30ffa826309705255c5da8e6d7b012c665a5b3da5d1eb83a4a0dfd1a95cd373d39a952902bb2841df429a1f4d20c642f4050b66427d5190633cc7c86dfb3883b18f4433e4784412bfa18e5e11e0683f191867c09d6c3519b03b45f4caa7a1d1f40d43841635b3a94fd6819b6b2176688cd0d16bc2b3ae2af2f8c0635aed6820c867d2d37b6176eb12e73ad7d0fccb8aa7c78500fa9af5bf4e168f0</script>  <div class="hbe hbe-content">    <div class="hbe hbe-input hbe-input-default">      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">        <span class="hbe hbe-input-label-content hbe-input-label-content-default">Hey, password is required here.</span>      </label>    </div>  </div></div><script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
+    
+    
+    <summary type="html">Here&#39;s something encrypted, password is required to continue reading.</summary>
+    
+    
+    
+    <category term="随记" scheme="https://azure0202.github.io/categories/%E9%9A%8F%E8%AE%B0/"/>
+    
+    
+    <category term="我与山大" scheme="https://azure0202.github.io/tags/%E6%88%91%E4%B8%8E%E5%B1%B1%E5%A4%A7/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>今日记 | LORI</title>
+    <link href="https://azure0202.github.io/2023/10/29/%E4%BB%8A%E6%97%A5%E8%AE%B0-LORI/"/>
+    <id>https://azure0202.github.io/2023/10/29/%E4%BB%8A%E6%97%A5%E8%AE%B0-LORI/</id>
+    <published>2023-10-29T14:25:31.000Z</published>
+    <updated>2025-02-21T08:00:38.069Z</updated>
+    
+    <content type="html"><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">  <script id="hbeData" type="hbeData" data-hmacdigest="170d5f0935cff0aa80b02f96cc3a0fbea12657f8e7c21e239c95ab91d159462b">c9324cccb5d5ac6d12717ddfd780e17fd4eb668438f3a4353e705fd57fbdf418f5b119873bdf8540c42e1df8ce758a86fadfa2ce6956d8f81ac58f8bb35146e7eecad586cc0031b7679da0818417ab6574a6346b364bacb09fee3ad8e6916e36658e12ac0de049eb042a26cdde4654fcf996255d082f2a854fa920ef69b7702b68fdc067ddcf1f210ce11f73ff155d4221c3c5956952a7affa2c4c300135cd2d5dd3a440d39c9031406fb6da672d1ba925135d815ba65b639b1c60a77c6df982a9a21580659981fce4beab1e2de44335e4b4957a42bf5ee6bb5d1290fb89b8439c8ff3a61c23ac884ea41631196c2f7360ab4f55ecdc49d74f3b6f29fba265d7a6b15adcd45ef505c77de5ef40b4e8ce510c352121cdcf075b6a0f65eeb545e30603cf7204772e93d3c682e2e9dfbea7f94072c8bc123084d85efa72e297c8aed62cf152754ad2204a754b944118051954c2d25dd19a524950554d53e652121ad157c3605712007815c4bb2f524d09ed5931ec53b38d076c15c2b0f61acc06b0420da6c868cfd74113dfb726c839f0715609803b1ebd135b84b708374b81552d75fc2b4f9d0c78f40fc5d4751ebd4ef32e5329851b4b6e855542b72ae268f892d3ae930eed2328c52e966747ec8f6fad746b3aa2661fe325c1c5ba73f944db8eced4d2cd09b77d377d1b5572242f529990a4727974d8d08dcaf3ded82851c5e1696776d46e0ae8388d979f4828112da7b15cb6d54fc8a5a5224f13229e4c9e480ba0f464a69e1145055a2aff73aaedb155238e7a62fed8b1650e4b7cc27b7151712756b962a1c1b63f6295d630d751959e192e7f7a8bc77f749c92c0b1fb8d18273d915d1c9d86dbc5e478328340ed75fa770348d64ace46b0df59e6a31b3aaa778f35ece14d9340cba67db607e6b01722889ece684fa13cd0e8b457dbcf731970fcbbb5b6a4afd942f8e1808959fa62907123c7bc4ea07e5b51255b554b1cc43a79d252d5a3c5b55890a7dc08caacd938e8d5e2ad948627664a149a30891af87d9450e60135460114ea5c7dde9a86d7cf675c2a49602f27a519b6b15358ee88267b5bc80f695e63dcd73f20b1e0a955c0cb442942f88ed3caef1aff94e905855abd6912f9fdd0f4b400d5c93ae2da469da4c4cd8b7de241f723f523471075c5012b0d6f68579092574a0858b1bfc9804b801681c550d931eb337fa07206a33d19335ecb8eaa9e9dc8fe7d17b8601dccef28a8b6dca6f10820a443d7b7689058e22b462a733ad67d7463b5de5858ce3112191d08780823eadfb5d9c1debd0cfd13982ff23b180cdc30e6cb91858e661cf72ddd0f87d50e9041ec7269aa5788bf0848dcbdc48a08673b7a6c08b1018f247e5cbac511c4749cb84be517cf602703a9a6a5e7e39fe00b8febb6ad68c8bab8d4cd9af0ff54fe75c40213165178bcca6c767cd781a3438dd28336870c7f8a0f97707f81f7b8dbb16ef48b6240cda2e3efb347b5b6fa878ef1b1dac3386c4fced16305761119f2ba10fd3871a825fa4907ab0feb2ec1195107c275006912afb946686477c7864904a5efec1ff8f2c0552927b4f7b8dc39e47cf126444500ffc5839a282539938ae1c08c7b75cd444d0c66af041914978640bae51c9f55ad74c8ed56778c038741271e5278b073190467441aa795e628e70e41696c91008704364bcd32b2de55e176629f77e03ce52e3f90f9ae99dac91c40c8d9f5dd0d26de2de8e9e4d8122e82f7fe3230dec9021161f5e8968e1c5e81e34cf18e9ed6210c3d939a070c90a22c333c86326a14d1dfa8899522cef81af9bd14235108d11e20578cc79cc4248430f1054302f4e83e48453790a35b63beda74b5b29b35e366a31fe4b3964ddb1c15d00112ca8b9e407f300ddef000114bea51320d9e140020f7bd4b71c2f17ce65f820e8d30f7bed9de7775996b4c2d8faf5c612d085488fe061693a4b627c90d8810b6e565b413d13d3bb13175feeda1c49e1d8ffd1d1f9b2fbd2a9cdba584278e3c01a8447f7e88a52784fab71257b508260112075ec05943279dbfca902f81c26b332a802d2d60d3d9efba536d55086f32b4b0694d3a732343ee886ffa274b141d6118cd1ad5752387d9cbea3581ee78c768a5b8cb59ae328fdabea0b45d9c6aa7fb386fdee7de0cddc9d9eff2d904405b207d1ebc75a0541adae0a51e31a1d5259717ba9248d8cbd6f8a8969f53615945c1d9eb40a98a4c43a803dca3c32863c159880f05520ac8a43308771d6cb8a7df0a27fc5224e805efc8b7a4e1a4cb9d42e9b71677ac27c9d1d1fe1f6d3f65b676991657b3665b5baf253762ba2f2e95ff03e4b4cd51f7cb76793fa6c2bd85e7e1272ebb70ab85d9a6017cec05cb8727eca577015584dd02e48762af672857af008e3fdd8e878fbd1e7b70603a328993c68772af3b30a86baf0240ae479769346040c542cd9b2a5d9a19f0b72bebd9deda7f1b43b376731a08a0d37649c1d4a2392f028fb138a5d35612596f11df8e16b3f65c1e2c080e23f8dda657715580e814ebb8851a021f6995e85245785038d890503645d94edbd8ba9b4c61475cae64e8bf94c9ae0a415e2ef67603f7361786c1e1e6f0e5d444e6adb4443250403bc13037725ce7fa05853415908e10293113b756ca8caac5a4967bced907f679e95be52c14741719077a4999d41fd75c277ea4091ea7630b08e81cf0e95bec292c83973413cdcff438c75b681fa8d07d5392d7cee8dfd32c6aa07524c61659d1add019ddf16c221a4f10a56989947353ea838cac8c83cbd8f7cfadf6ce8994506ed45a4b90295d4ed836e9731ca3b3a3922c6736fc278bd34d6910cce313617587aa0346a267f5f7b347ab44d31f1c868d1dd9ad29701adf1cb564779c786c53342360caf9c1dcd31a346963ac98f6173741133e6e9c45f8ed42603d0277805876df4bed0915f2dc6474c390ca45dbe443c3c207c07d681f083eb2d42421a5a0f7ee84b3978242e15b4166a4f9be169edd1872aa45432bb5baedb7089b14b73aed3d0dd2051fa2ad3384330adce1b170110d3b76a26032814f4ef4b22bc4fdf904091de4c5aac7ba6f1da71d3660c2a5a0a5d4d23b0c7df5c889b0ea92db1f9eae58f1e79e96afc46e6707e28661310ab23098b115fa8778c499a5eaebb04ced6b547b4531473206b1d8d447bc0f5d6aa48b21e6a2e8ab8d7e28e94b01635102b281d26fd662c54d5896360af54fc4c7333fdef3e5bab4b0a854abab7c0d6331b8cf4ecefcbc5b88f9cfbe0bdf31a212f73d1e184e59cb9f6659a075a5a3c640d96f98ab7093c07dbc6d51e7b55e5e7e0d103e1c21036a41f8c7cea605a102e3d935790bda1fde7da05ae6277fe06f64d9db8b062f2570b212ed46d95e56a590160c5d863fdb167f5a035dd0b4a721a339a8a49aa925646d1e62196006f19132c3e92f0a60a0616b007ce6c0c1628572353940bf7d7288654e3d0ad21eff9539d8d1c51199954a3569e99b6a4b31ba9cd861a9d74115095203457807c881356010757678ba1b57373610ddefcf38f34857ad3573f6c49b81bc6e75d8dadc2171c187ced3b59fd110f591398de2b46f3b379d640fdcd6175206e823bfca01be0df6348999a251de0413ad14b08e7d71ea535acf7fd6d0125a23d9e41b0d44f2b7204dd239a381f0c712e7f68f35d3eb3d5e060c95155f2b4efea7fcaef1723481a91f110ca85ddbce858124cfa631b44157595c3df481a66d017c68c2b9e8249c6a3987f6ea9da84d5a70870519296c5694bbe590ffbf8d5236dcf7c7ce8866783a9f169478b5bd23d2aca20c3cce0b1017381978826e8336a4a9a13ef75a577e716fc1a8d4b4c9e60a5c54556a563f9f75b8546a6f1c9427bb47ba00134bb5584c99532894851c67fba5c28c3f9e3ff3f80c515d507dec5b87e7b64efea180216b91b2b015e24af625c8403f4721e8eb6456198c5ca8772f2c5eeb818e84d73eb2ae052c7667ff9ea1a8e425864722ceec8332148b7a1956537ea0ac9c2f94769491cd47e6c92ff6aa14170d7ab38b7f8310378750cca528f070e6d91243226eae24995442f503fb100cdf5f25f63e1ee2428ee4786521bc0b611c2fdbf99927e20732e7679847991f7ea86b659793e45c03e4f15268574cd5882b0e8ce942240b70faaab90d37a3875decfdb7224d09dbcbbfee113bdc663dc595cc53f3241a1d1ad6393448103883f220dee6adb2466f69243030ccfa31abd5327f51df5dde03bd2fc98aac6395e8ac8d67cb77ec23e7385c64313ee0ef8bacf84f9275ddec75303d822aa2e966d52b44c1900d8ff379246aebc2304509a24182e64ff36610376e85bbb7d8253a75a88f426d535fbdc1c9c4fc7a47cb4f2a0f211c5ddb0641c6797214eb32195ba641981205f81877dfff6d511fa5a800dc3b341dc50a58f80438637e4ec46d186036d11d529947678393829bf887b79d87debac1724e925622bc7b2f6f649133fab420a92c1b233f5c1363d8be54a2a81ef3f58ed46f84daafea8e8de567dac274eabef3de3bf0bd23758d016f98b09b306d41a4511a979545cbdf5fe339afd003aa17e5b303d17000b8c9b2785d116df2da1269540866c5b8ef4703bab9a13919d5b2f45bd81ca7153f9d0e12c787a7a396e0197697fb85f2f6c975020339da06e2e076c5977111f763470ca7b8487d1a6c6c5947b2b7fe57175397007f63a6b8bf9c9f0428690cc7036e281a30679bdceb36267371ee43f79fe06ee94300c10ec9cc2154ea5f24755886253b7922b33ec687f7f5a32bc25d6477d67dbbeb1e7bd90dd89389c4b8178adc95c3ed0795d55235f812092d1eb5539ed919caad65cf2311e2ac417ba24a4b75f282e408b799f78a5df7ce3f182d2a6dc872b70232fc6d0ad780554edb0483a922bf72286650e91ecd54839a63fa7c94740f60a7c1a3c0d6a7cf720d4ab144480f3ee090e4fecbe5322f9b5f82adcdc8dcaa99d8d07088a3da893be223f7e6c71cac52f1e45314ec3cbe234d75bcd5f68125f6d79e8ceb0634dc12ef2b2dd2c4ed7f107f1810b2951a64884ed3e204f0a1e411ae10148c2bc85a14da36a41aee54771e803411b135f0928d77937b13d36e1c7f7869c5b3c6e11ec569c3bc77998519f06fe72edf721af47dc5767602debbe6c15b7c415a07b7ada1763813ea2ed1f4d3c7de54d044fdfac55e402029183108208be2c0f5b417f023f54d46771ad2e1631cba49a2c485217736d45bba4378b56376e3f7589bcba3c76b6f9cb1aa809a2f3a73b68f8ff0ebffd8af3bb0e372cda60b94464df40b4c50ed056ed7f07c3509a3bce6a7e513252002df2f9c69f367f97da162ca0591ceea4bc9157f2918e2e86b07f0fe478b2aa7b99ea3547fd7516bb69cc56c0bbc709d225c49ef4e52dbd5df0d74fe1491c4f680656e38838bb1a1bf577c0043590dfc6ad15c354c0b4ec46e0df8485b2ed5cd6b62868758b6d9bc54e66e71fed353d2b9919e186874e72effb3374204c5d3df2c1a29a0ba0f1839a076a47eb4784e865202586fa075a4927f2f1eb505de1c0646cb24c1d82eb1c76e811d554859bfde5193abf60327db2de2527669b2d17d1636f9a000f6d97ad5f0b08179c065dc8fa08d9b4a23cab3e72850c45b36af576f2fee759d9a9a7b8b24615e7b3c03629f11dd298fcd87633ab85b6efd890c55bd9cd508bec44c0bd7b2f1e7e6370801e29453c2521583d6932d8711125c8ff1b9d24ab672a13b8e41ffc07521bf9673619bb4946b26d7d5291075ed3de21bfb1c1fe239c8295fd569e6004831c57fc6c412b6f30aaf5b7548b4939ea564f17054852b238cd9660c89d4c494eb7142d83c55e9c75cba535d27d4d091562d</script>  <div class="hbe hbe-content">    <div class="hbe hbe-input hbe-input-default">      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">        <span class="hbe hbe-input-label-content hbe-input-label-content-default">Hey, password is required here.</span>      </label>    </div>  </div></div><script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
+    
+    
+    <summary type="html">Here&#39;s something encrypted, password is required to continue reading.</summary>
+    
+    
+    
+    <category term="Logic" scheme="https://azure0202.github.io/categories/Logic/"/>
+    
+    
+    <category term="我与山大" scheme="https://azure0202.github.io/tags/%E6%88%91%E4%B8%8E%E5%B1%B1%E5%A4%A7/"/>
+    
+  </entry>
+  
+</feed>
