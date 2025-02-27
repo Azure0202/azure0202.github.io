@@ -50,6 +50,16 @@
 
 
   
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-288G6VFVVF"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-288G6VFVVF');
+    </script>
+  
 
   
 
@@ -158,7 +168,7 @@
       <div class="post-attach">
         <span class="post-pubtime">
           <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
-          2025-02-27 14:31:52
+          2025-02-27 15:04:26
         </span>
         
       </div>
@@ -186,16 +196,18 @@
 
 <p>似乎不大行，改日再看吧。</p>
 <p>修改文件themes&#x2F;oranges&#x2F;layout&#x2F;_partial&#x2F;footer.ejs，添加以下内容：</p>
- <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 添加网站统计信息 --&gt;</span><br><span class="line">&lt;div class=&quot;footer-stats&quot;&gt;</span><br><span class="line">  &lt;p&gt;文章数目: &lt;%= site.posts.length %&gt;&lt;/p&gt;</span><br><span class="line">  &lt;p&gt;运行时间: &lt;%= (new Date() - new Date(&#x27;2022-12-26&#x27;)) / (1000 * 60 * 60 * 24) %&gt; 天&lt;/p&gt;</span><br><span class="line">  &lt;p&gt;本站总字数: &lt;%= site.posts.reduce(function(sum, post)&#123; return sum + post.content.split(&#x27; &#x27;).length; &#125;, 0) %&gt; 字&lt;/p&gt;</span><br><span class="line">  &lt;p&gt;本站访客数: &lt;%= site.visitors || &#x27;未知&#x27; %&gt;&lt;/p&gt;</span><br><span class="line">  &lt;p&gt;本站总浏览量: &lt;%= site.pageviews || &#x27;未知&#x27; %&gt;&lt;/p&gt;</span><br><span class="line">  &lt;p&gt;最后更新时间: &lt;%= site.updatedAt || &#x27;未知&#x27; %&gt;&lt;/p&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 添加网站统计信息 --&gt;</span><br><span class="line">&lt;div class=&quot;footer-stats&quot;&gt;</span><br><span class="line">  &lt;p&gt;文章数目: &lt;%= site.posts.length %&gt;&lt;/p&gt;</span><br><span class="line">  &lt;p&gt;运行时间: &lt;%= Math.floor((new Date() - new Date(&#x27;2019-01-01&#x27;)) / (1000 * 60 * 60 * 24)) %&gt; 天&lt;/p&gt;</span><br><span class="line">  &lt;p&gt;本站总字数: &lt;%= site.posts.reduce(function(sum, post)&#123; return sum + post.content.length; &#125;, 0) %&gt; 字&lt;/p&gt;</span><br><span class="line">  </span><br><span class="line">  &lt;!-- 访客数和浏览量 --&gt;</span><br><span class="line">  &lt;p&gt;本站访客数: &lt;%= site.visitors || &#x27;未知&#x27; %&gt;&lt;/p&gt;</span><br><span class="line">  &lt;p&gt;本站总浏览量: &lt;%= site.pageviews || &#x27;未知&#x27; %&gt;&lt;/p&gt;</span><br><span class="line"></span><br><span class="line">  &lt;!-- 最后更新时间 --&gt;</span><br><span class="line">  &lt;p&gt;最后更新时间: &lt;%= site.updatedAt ? site.updatedAt.toLocaleDateString() : &#x27;未知&#x27; %&gt;&lt;/p&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
 
-<p>安装 <code>hexo-generator-visitor</code> 插件：</p>
+<p>不采用，别安装了：安装 <code>hexo-generator-visitor</code> 插件：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-generator-visitor --save</span><br></pre></td></tr></table></figure>
 
-<p>在 <code>_config.yml</code> 配置文件中设置插件，插件会将访客数据记录在 <code>public/visitor.json</code> 文件中：</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">visitor:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">json</span></span><br></pre></td></tr></table></figure>
+<p>添加谷歌分析，<code>hexo-generator-visitor</code> 插件已经不再维护或不可用，考虑使用Google Analytics：</p>
+<p>原来zcheng大人已经写了，我忽略了，原文如下：</p>
+<p>First, view <a target="_blank" rel="noopener" href="https://analytics.google.com/">Google Analytics</a> to get the <code>gtagkey</code>:</p>
+<p>Then, enable <code>gtag</code> in the <code>_config.oranges.yml</code> file:</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">gtag:</span><br><span class="line">  enable: true</span><br><span class="line">  gtagkey: UA-xxxxxxx-x</span><br></pre></td></tr></table></figure>
 
-
-
+<p>我的注册到的就是 GA4版本的，所以gtagkey就是G开头的，似乎之后不支持UA版本了，对应的改一下就可以。</p>
 <h1 id="03添加RSS"><a href="#03添加RSS" class="headerlink" title="03添加RSS"></a>03添加RSS</h1><p>安装RSS：</p>
 <p><a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo-generator-feed">hexojs&#x2F;hexo-generator-feed: Feed generator for Hexo.</a></p>
 <p>把主题配置文件中部分取消注释：</p>
@@ -222,7 +234,7 @@
           <div class="post-attach">
             <span class="post-pubtime">
               <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
-              2025-02-27 14:31:52
+              2025-02-27 15:04:26
             </span>
             
           </div>
@@ -329,10 +341,14 @@
   <!-- 添加网站统计信息 -->
   <div class="footer-stats">
     <p>文章数目: 29</p>
-    <p>运行时间: 2249.272339525463 天</p>
-    <p>本站总字数: 2464 字</p>
+    <p>运行时间: 2249 天</p>
+    <p>本站总字数: 92260 字</p>
+    
+    <!-- 访客数和浏览量 -->
     <p>本站访客数: 未知</p>
     <p>本站总浏览量: 未知</p>
+
+    <!-- 最后更新时间 -->
     <p>最后更新时间: 未知</p>
   </div>
 
