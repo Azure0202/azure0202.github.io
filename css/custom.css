@@ -5,9 +5,9 @@
   flex-wrap: wrap;  /* 当空间不足时换行 */
   gap: 4px;  /* 设置项之间的间距 */
   padding: 0px 0; /* 减少上下的 padding 使底部更紧凑 */
-  font-size: 0.6rem;  /* 根据网页字体统一设定 */
+  font-size: 1.6rem;  /* 根据网页字体统一设定 */
   background-color: var(--bg-footer);  /* 底部背景颜色来自全局变量 */
-  color: var(--color-text-footer);  /* 字体颜色来自全局变量 */
+  color: #666;  /* 字体颜色来自全局变量 */
   font-family: Consolas, "Liberation Mono", Menlo, Monaco, "Source Han Sans CN", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif; /* 统一字体 */
 }
 
@@ -16,20 +16,20 @@
   margin: 2px 4px;  /* 每个项之间的间隔 */
   display: inline-block;  /* 确保它们是行内元素 */
   text-align: center;  /* 确保文字居中 */
-  font-size: 0.6rem;  /* 统一字体大小，保持一致 */
+  font-size: 1.6rem;  /* 统一字体大小，保持一致 */
   line-height: 0.1;  /* 增加行高，保持舒适阅读 */
 }
 
 /* 使每个项目有个小的悬停效果 */
 .footer-item:hover {
-  color: var(--color-hover); /* 悬停时改变字体颜色，使用全局变量 */
+  color: #000000; /* 悬停时改变字体颜色，使用全局变量 */
   cursor: pointer; /* 悬停时显示指针 */
 }
 
 /* 小屏设备下底部样式调整 */
 @media (max-width: 768px) {
   .footer-stats {
-    font-size: 0.6rem; /* 在小屏幕上稍微缩小字体 */
-    padding: 8px 0; /* 调整底部内边距 */
+    font-size: 1.6rem; /* 在小屏幕上稍微缩小字体 */
+    padding: 0px 0; /* 调整底部内边距 */
   }
 }
