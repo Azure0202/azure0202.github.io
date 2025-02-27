@@ -171,7 +171,7 @@
       <div class="post-attach">
         <span class="post-pubtime">
           <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
-          2025-02-27 15:31:47
+          2025-02-27 15:52:34
         </span>
         
       </div>
@@ -222,6 +222,12 @@
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 引入自定义样式 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">&quot;stylesheet&quot;</span> <span class="attr">href</span>=<span class="string">&quot;/css/custom.css&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p>**目的：将所有自定义样式放在 <code>custom.css</code> 文件中，方便管理。</p>
+<p>很好，更丑了。</p>
+<p>继续修改</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">/* 底部统计容器样式 */</span><br><span class="line">.footer-stats &#123;</span><br><span class="line">  display: flex;  /* 使用 Flexbox 布局 */</span><br><span class="line">  justify-content: center;  /* 使内容居中 */</span><br><span class="line">  flex-wrap: wrap;  /* 当空间不足时换行 */</span><br><span class="line">  gap: 20px;  /* 设置项之间的间距 */</span><br><span class="line">  padding: 20px 0;</span><br><span class="line">  font-size: 1.4rem;  /* 根据网页字体统一设定 */</span><br><span class="line">  background-color: var(--bg-footer);  /* 底部背景颜色来自全局变量 */</span><br><span class="line">  color: var(--color-text-footer);  /* 字体颜色来自全局变量 */</span><br><span class="line">  font-family: Consolas, &quot;Liberation Mono&quot;, Menlo, Monaco, &quot;Source Han Sans CN&quot;, &quot;PingFang SC&quot;, &quot;Hiragino Sans GB&quot;, &quot;Microsoft YaHei&quot;, sans-serif; /* 统一字体 */</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">/* 每个统计项的样式 */</span><br><span class="line">.footer-item &#123;</span><br><span class="line">  margin: 5px 10px;  /* 每个项之间的间隔 */</span><br><span class="line">  display: inline-block;  /* 确保它们是行内元素 */</span><br><span class="line">  text-align: center;  /* 确保文字居中 */</span><br><span class="line">  font-size: 1.4rem;  /* 统一字体大小，保持一致 */</span><br><span class="line">  line-height: 1.6;  /* 增加行高，保持舒适阅读 */</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">/* 使每个项目有个小的悬停效果 */</span><br><span class="line">.footer-item:hover &#123;</span><br><span class="line">  color: var(--color-hover); /* 悬停时改变字体颜色，使用全局变量 */</span><br><span class="line">  cursor: pointer; /* 悬停时显示指针 */</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">/* 小屏设备下底部样式调整 */</span><br><span class="line">@media (max-width: 768px) &#123;</span><br><span class="line">  .footer-stats &#123;</span><br><span class="line">    font-size: 1.2rem; /* 在小屏幕上稍微缩小字体 */</span><br><span class="line">    padding: 15px 0; /* 调整底部内边距 */</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
 <h1 id="03添加RSS"><a href="#03添加RSS" class="headerlink" title="03添加RSS"></a>03添加RSS</h1><p>安装RSS：</p>
 <p><a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo-generator-feed">hexojs&#x2F;hexo-generator-feed: Feed generator for Hexo.</a></p>
 <p>把主题配置文件中部分取消注释：</p>
@@ -248,7 +254,7 @@
           <div class="post-attach">
             <span class="post-pubtime">
               <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
-              2025-02-27 15:31:47
+              2025-02-27 15:52:34
             </span>
             
           </div>
@@ -356,7 +362,7 @@
   <div class="footer-stats">
     <span class="footer-item">文章数目: 29</span>
     <span class="footer-item">运行时间: 795 天</span>
-    <span class="footer-item">本站总字数: 98527 字</span>
+    <span class="footer-item">本站总字数: 101925 字</span>
     <span class="footer-item">本站访客数: 未知</span>
     <span class="footer-item">本站总浏览量: 未知</span>
     <span class="footer-item">最后更新时间: 未知</span>
