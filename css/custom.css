@@ -4,7 +4,7 @@
   justify-content: center;  /* 使内容居中 */
   flex-wrap: wrap;  /* 当空间不足时换行 */
   gap: 4px;  /* 设置项之间的间距 */
-  padding: 2px 0;
+  padding: 0px 0; /* 减少上下的 padding 使底部更紧凑 */
   font-size: 0.6rem;  /* 根据网页字体统一设定 */
   background-color: var(--bg-footer);  /* 底部背景颜色来自全局变量 */
   color: var(--color-text-footer);  /* 字体颜色来自全局变量 */
