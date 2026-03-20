@@ -6,7 +6,7 @@
   <link href="https://azure0202.github.io/atom.xml" rel="self"/>
   
   <link href="https://azure0202.github.io/"/>
-  <updated>2026-01-27T11:39:16.192Z</updated>
+  <updated>2026-03-20T16:00:34.956Z</updated>
   <id>https://azure0202.github.io/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>春分日 | 读《听听那冷雨》</title>
+    <link href="https://azure0202.github.io/2026/03/20/%E6%98%A5%E5%88%86%E6%97%A5-%E8%AF%BB%E3%80%8A%E5%90%AC%E5%90%AC%E9%82%A3%E5%86%B7%E9%9B%A8%E3%80%8B/"/>
+    <id>https://azure0202.github.io/2026/03/20/%E6%98%A5%E5%88%86%E6%97%A5-%E8%AF%BB%E3%80%8A%E5%90%AC%E5%90%AC%E9%82%A3%E5%86%B7%E9%9B%A8%E3%80%8B/</id>
+    <published>2026-03-20T15:54:21.000Z</published>
+    <updated>2026-03-20T16:00:34.956Z</updated>
+    
+    <content type="html"><![CDATA[<p>书名：听听那冷雨<br>作者：余光中<br>ISBN：9787505745919</p><p>读余光中先生的文字是可以被视作一种快乐，言辞优美，娓娓道来。这是一篇散文，写了多种雨，作者也不只是在写雨，还有对故乡的思念，充分说明乡愁是一件件具体的小事，愿祖国早日统一。 </p><hr><p>摘录句子：</p><p>惊蛰一过，春寒加剧。先是料料峭峭，继而雨季开始，时而淋淋漓漓，时而淅淅沥沥，天潮潮地湿湿，即连在梦里，也似乎把伞撑着。而就凭一把伞，躲过一阵潇潇的冷雨，也躲不过整个雨季。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;书名：听听那冷雨&lt;br&gt;作者：余光中&lt;br&gt;ISBN：9787505745919&lt;/p&gt;
+&lt;p&gt;读余光中先生的文字是可以被视作一种快乐，言辞优美，娓娓道来。这是一篇散文，写了多种雨，作者也不只是在写雨，还有对故乡的思念，充分说明乡愁是一件件具体的小事，愿祖国早日统一。 &lt;/</summary>
+      
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>读本书 | 读《亲密关系》</title>
@@ -394,26 +415,6 @@
     
     
     <summary type="html">Here&#39;s something encrypted, password is required to continue reading.</summary>
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>实用的 | 关于Anaconda</title>
-    <link href="https://azure0202.github.io/2024/10/18/%E5%AE%9E%E7%94%A8%E7%9A%84-%E5%85%B3%E4%BA%8EAnaconda/"/>
-    <id>https://azure0202.github.io/2024/10/18/%E5%AE%9E%E7%94%A8%E7%9A%84-%E5%85%B3%E4%BA%8EAnaconda/</id>
-    <published>2024-10-18T03:24:17.000Z</published>
-    <updated>2025-03-13T12:51:45.195Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="1-安装Anaconda"><a href="#1-安装Anaconda" class="headerlink" title="1 安装Anaconda"></a>1 安装Anaconda</h1><p><a href="https://www.anaconda.com/download/success">Download Now | Anaconda</a></p><p>勾选“Add Anaconda3 to my PATH environment variable”</p><p><img src="https://ooo.0x0.ooo/2025/03/04/OQD6MU.png" alt="jietu"></p><h1 id="2-Jupyter-Notebook"><a href="#2-Jupyter-Notebook" class="headerlink" title="2 Jupyter Notebook"></a>2 Jupyter Notebook</h1><h2 id="2-1创建Jupyter-Notebook桌面快捷方式"><a href="#2-1创建Jupyter-Notebook桌面快捷方式" class="headerlink" title="2.1创建Jupyter Notebook桌面快捷方式"></a>2.1创建Jupyter Notebook桌面快捷方式</h2><p>我从开始菜单创建的，路径是C:\Users\用户名\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Anaconda (Anaconda3)</p><h2 id="2-2修改工作路径"><a href="#2-2修改工作路径" class="headerlink" title="2.2修改工作路径"></a>2.2修改工作路径</h2><p>方法一：改配置文件（似乎无效）</p><p>我的安装路径是默认这样的D:\Anaconda3\etc\jupyter</p><p>打开命令提示符Win+R, cmd, 输入jupyter notebook –generate-config</p><p>生成了一个 <code>jupyter_notebook_config.py</code> 文件，位于 C:\Users\用户名.jupyter\</p><p>打开文件，找到对应行，修改：大约在931行：</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">c.NotebookApp.notebook_dir = <span class="string">&#x27;D:\\Jupyter&#x27;</span></span><br></pre></td></tr></table></figure><p>现在重新注释上，原来这行是什么忘了。</p><p>方法二：修改快捷方式属性（成功）</p><p>右击快捷方式-属性-快捷方式</p><ul><li><p>修改目标字段为：D:\Anaconda3\python.exe D:\Anaconda3\cwp.py D:\Anaconda3 D:\Anaconda3\python.exe D:\Anaconda3\Scripts\jupyter-notebook-script.py –notebook-dir&#x3D;D:\Jupyter</p></li><li><p>注意：路径中的空格需要用引号括起来。</p></li><li><p>修改起始位置为：D:\Jupyter</p></li></ul><p>检查：</p><p>在 Notebook 中运行：</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;当前工作路径：&quot;</span>, os.getcwd())</span><br></pre></td></tr></table></figure><p>补充：</p><p>原来目标字段是：D:\Anaconda3\python.exe D:\Anaconda3\cwp.py D:\Anaconda3 D:\Anaconda3\python.exe D:\Anaconda3\Scripts\jupyter-notebook-script.py %USERPROFILE%</p><p>原来起始位置是：%USERPROFILE%</p><p>可直接在文件管理中搜索<code>%USERPROFILE%</code>即可出现主文件夹</p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h1 id=&quot;1-安装Anaconda&quot;&gt;&lt;a href=&quot;#1-安装Anaconda&quot; class=&quot;headerlink&quot; title=&quot;1 安装Anaconda&quot;&gt;&lt;/a&gt;1 安装Anaconda&lt;/h1&gt;&lt;p&gt;&lt;a href=&quot;https://www.anaconda.</summary>
-      
     
     
     
