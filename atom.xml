@@ -6,7 +6,7 @@
   <link href="https://azure0202.github.io/atom.xml" rel="self"/>
   
   <link href="https://azure0202.github.io/"/>
-  <updated>2026-05-15T17:01:35.880Z</updated>
+  <updated>2026-05-23T17:20:03.761Z</updated>
   <id>https://azure0202.github.io/</id>
   
   <author>
@@ -15,6 +15,19 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>结绳记 | 硕士生涯致谢</title>
+    <link href="https://azure0202.github.io/2026/05/24/%E7%BB%93%E7%BB%B3%E8%AE%B0-%E7%A1%95%E5%A3%AB%E7%94%9F%E6%B6%AF%E8%87%B4%E8%B0%A2/"/>
+    <id>https://azure0202.github.io/2026/05/24/%E7%BB%93%E7%BB%B3%E8%AE%B0-%E7%A1%95%E5%A3%AB%E7%94%9F%E6%B6%AF%E8%87%B4%E8%B0%A2/</id>
+    <published>2026-05-23T17:19:09.000Z</published>
+    <updated>2026-05-23T17:20:03.761Z</updated>
+    
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>读后感 | 读易有感</title>
@@ -63,7 +76,7 @@
     <link href="https://azure0202.github.io/2026/05/16/%E7%A7%8D%E8%8D%89%E5%AE%98-%E5%A5%BD%E7%94%A8%E7%9A%84%E5%9C%A8%E7%BA%BF%E5%B7%A5%E5%85%B7%E6%88%96%E7%94%9F%E6%B4%BB%E5%8A%A9%E6%89%8B/"/>
     <id>https://azure0202.github.io/2026/05/16/%E7%A7%8D%E8%8D%89%E5%AE%98-%E5%A5%BD%E7%94%A8%E7%9A%84%E5%9C%A8%E7%BA%BF%E5%B7%A5%E5%85%B7%E6%88%96%E7%94%9F%E6%B4%BB%E5%8A%A9%E6%89%8B/</id>
     <published>2026-05-15T16:38:51.000Z</published>
-    <updated>2026-05-15T17:51:35.323Z</updated>
+    <updated>2026-05-23T17:16:19.138Z</updated>
     
     <content type="html"><![CDATA[<p><strong>翻译软件</strong></p><p><a href="https://dict.youdao.com/?keyfrom=cidian">网易有道</a></p><p><a href="https://fanyi.sogou.com/text">搜狗翻译</a></p><p><a href="https://translate.google.com/?sl=en&tl=zh-CN&op=translate">谷歌翻译</a></p><p><a href="https://dictionary.cambridge.org/">剑桥词典</a></p><p><strong>设计工具</strong></p><p><a href="https://new.express.adobe.com/">Adobeexpress</a></p><p><strong>文献相关</strong></p><p><a href="https://zlib.li/">Zlibrary</a></p><p><strong>搜索</strong></p><p><a href="https://en.wikipedia.org/wiki/Main_Page">wikipedia</a></p><p><a href="https://plato.stanford.edu/">SEP</a></p><p><a href="https://www.bing.com/">Bing</a></p><p><strong>AI</strong></p><p><a href="https://chatgpt.com/">GPT</a></p><p><a href="https://gemini.google.com/">Gemini</a></p><p><strong>Latex</strong></p><p><a href="chrome-extension://efaidnbmnnnibpcajpcglclefindmkaj/https://www.cmor-faculty.rice.edu/~heinken/latex/symbols.pdf">Latex符号合集</a></p><p><a href="https://lukas-blecher.github.io/LaTeX-OCR/">LaTeX-OCR</a></p><p><a href="https://simpletex.cn/ai/latex_ocr">latex_ocr</a></p><p><strong>谷歌小游戏</strong></p><p><a href="chrome://dino/">小恐龙</a></p>]]></content>
     
@@ -85,7 +98,7 @@
     <link href="https://azure0202.github.io/2026/04/29/%E5%A4%9A%E8%AE%B0%E5%BD%95-%E6%84%9F%E6%81%A9%E6%97%A5%E8%AE%B0%E4%B9%8B%E7%94%9F%E6%B4%BB%E7%AF%87/"/>
     <id>https://azure0202.github.io/2026/04/29/%E5%A4%9A%E8%AE%B0%E5%BD%95-%E6%84%9F%E6%81%A9%E6%97%A5%E8%AE%B0%E4%B9%8B%E7%94%9F%E6%B4%BB%E7%AF%87/</id>
     <published>2026-04-29T08:52:33.000Z</published>
-    <updated>2026-05-15T16:41:46.895Z</updated>
+    <updated>2026-05-23T17:17:02.327Z</updated>
     
     <content type="html"><![CDATA[<p>古话说天地之气每五天会有一次变化，阴霾了许久的天会晴，下了许久的雨会停，顺应自然气候是大自然的生存法则，自然，我们也应当顺应时代，顺应气候；最重要的，顺应内心，如此，即是顺应天命。</p><p>本人使用酷狗音乐作音乐软件，奈何酷狗网页播放器并未学会，</p><p>把计划学习放在这里提醒自己：</p><ul><li><p><input disabled="" type="checkbox"> 推荐<a href="https://aplayer.js.org/#/zh-Hans/">APlayer</a></p></li><li><p><input disabled="" type="checkbox"> <a href="https://cloud.tencent.com/developer/article/2529483">使用纯 html + javascript 开发一个本地音乐播放器-腾讯云开发者社区-腾讯云</a></p></li><li><p><input disabled="" type="checkbox"> <a href="https://www.cnblogs.com/echeverra/p/aplayer.html">如何在博客中添加Aplayer音乐播放器 - echeverra - 博客园</a></p></li><li><p><input disabled="" type="checkbox"> <a href="https://www.cnblogs.com/codedingzhen/p/17849752.html">任何html页面添加Apalyer音乐播放器 - 学不会xuebuhui - 博客园</a></p></li></ul><p>推荐一首歌曲：</p><p>2026年4月29日</p><p>今天捣鼓了一下博客，很不错！发烧也好了！元气满满！</p>]]></content>
     
@@ -401,26 +414,6 @@
     
     
     <summary type="html">Here&#39;s something encrypted, password is required to continue reading.</summary>
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>实用的 | 工具类</title>
-    <link href="https://azure0202.github.io/2025/03/03/%E5%AE%9E%E7%94%A8%E7%9A%84-%E5%B7%A5%E5%85%B7%E7%B1%BB/"/>
-    <id>https://azure0202.github.io/2025/03/03/%E5%AE%9E%E7%94%A8%E7%9A%84-%E5%B7%A5%E5%85%B7%E7%B1%BB/</id>
-    <published>2025-03-03T09:59:16.000Z</published>
-    <updated>2025-03-03T15:18:03.472Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="1-Drawboard-PDF-6-35-6"><a href="#1-Drawboard-PDF-6-35-6" class="headerlink" title="1 Drawboard PDF 6.35.6"></a>1 Drawboard PDF 6.35.6</h1><h2 id="1-1-链接下载"><a href="#1-1-链接下载" class="headerlink" title="1.1 链接下载"></a>1.1 链接下载</h2><p>百度网盘链接：</p><p>链接: <a href="https://pan.baidu.com/s/1KUures_bYtJ6NU6wAB2-YA?pwd=issm">https://pan.baidu.com/s/1KUures_bYtJ6NU6wAB2-YA?pwd=issm</a> </p><p>提取码: issm</p><p>原文章：<a href="https://zhuanlan.zhihu.com/p/686769412">Drawboard PDF 6.35.6 旧版本分享 - 知乎</a></p><h1 id="1-2-教程相关"><a href="#1-2-教程相关" class="headerlink" title="1.2 教程相关"></a>1.2 教程相关</h1><p>设置-系统-开发者选项-开发人员模式</p><p><a href="https://www.cnblogs.com/ranxi169/p/17669400.html">Drawboard历史版本安装教程含关闭自动更新 - 孤飞 - 博客园</a></p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h1 id=&quot;1-Drawboard-PDF-6-35-6&quot;&gt;&lt;a href=&quot;#1-Drawboard-PDF-6-35-6&quot; class=&quot;headerlink&quot; title=&quot;1 Drawboard PDF 6.35.6&quot;&gt;&lt;/a&gt;1 Drawboard PDF 6.35</summary>
-      
     
     
     
